@@ -1,0 +1,165 @@
+ quant_block_size2 - Near duplicate of function already in NBIS 
+                library, but passing a precomputed DQT_TABLE 
+                pointer rather than QUANT_VALS.
+                I.e. no rate control is performed in this version.
+ wsq_crop_qdata - Crop quantized coeff structures.
+ wsq_cropcoeff_mem - Crops input buffer of WSQ compressed bytes
+                into output WSQ buffer, by eliminating unneeded 
+                wavelet coefficients. First call (NULL output,
+                and NULL qdata) will decode original data. 
+                Subsequent calls reuse data, and do not repeat 
+                the decode.
+ wsq_huffcode_mem - WSQ Huffman codes quantized coefficient array,
+                returning a changed memory buffer. Can be called
+                repeatedly with the same codestream header buffer.  
+                and won't reread the data.
+ wsq_dehuff_mem - Decodes WSQ to a quantized coefficient array,
+                and stops. Internal decode info (dtt_table,dqt_table)
+                is retained. Call once, followed by multiple calls
+                to wsq_crop_qdata and wsq_huffcode_mem. 
+ read_wsq_frame_header - Parses WSQ memory until the frame header is
+                found. The image dimensions and scale and shift
+                fields are read and returned.
+ wsq_decode_mem - Decodes a datastream of WSQ compressed bytes
+                  from a memory buffer, returning a lossy
+                  reconstructed pixmap.
+ wsq_decode_file - Decodes a datastream of WSQ compressed bytes
+                  from an open file, returning a lossy
+                  reconstructed pixmap.
+ huffman_decode_data_mem - Decodes a block of huffman encoded
+                  data from a memory buffer.
+ huffman_decode_data_file - Decodes a block of huffman encoded
+                  data from an open file.
+ decode_data_mem - Decodes huffman encoded data from a memory buffer.
+
+ decode_data_file - Decodes huffman encoded data from an open file.
+
+ nextbits_wsq - Gets next sequence of bits for data decoding from
+                    an open file.
+ getc_nextbits_wsq - Gets next sequence of bits for data decoding
+                    from a memory buffer.
+ wsq_encode_mem - WSQ encodes image data storing the compressed
+                   bytes to a memory buffer.
+ gen_hufftable_wsq - Generates a huffman table for a quantized
+                   data block.
+ compress_block - Codes a quantized image using huffman tables.
+
+ count_block - Counts the number of occurrences of each category
+                   in a huffman table.
+ check_huffcodes_wsq - Checks for an all 1's code in the code table.
+ read_ppi_wsq - Given a WSQ compressed data stream, attempts to
+                read a NISTCOM comment from an open file and
+                if possible return the pixel scan resulution
+                (PPI value) stored therein.
+ getc_ppi_wsq - Given a WSQ compressed data stream, attempts to
+                read a NISTCOM comment from a memory buffer and
+                if possible return the pixel scan resulution
+                (PPI value) stored therein.
+ wsq14_decode_file - Decompresses a WSQ-compressed datastream encoded
+           according to an old image format used in NIST Special
+           Database 14.  This routine should be used to decompress
+           legacy data only.  This old format should be considered
+           obsolete.
+ wsq14_2_wsq - Converts a WSQ-compressed datastream encoded according
+           to an old image format used in NIST Special Database 14
+           to the WSQ format compliant with the FBI's WSQ Gray-Scale
+           Fingerprint Image Compression Specification.
+ read_marker_wsq - Reads a specified WSQ marker from an open file.
+
+ getc_marker_wsq - Reads a specified WSQ marker from a memory buffer.
+
+ read_table_wsq - Reads a specified WSQ table from an open file.
+
+ getc_table_wsq - Reads a specified WSQ table from a memory buffer.
+
+ read_transform_table - Reads in a WSQ transform table from an
+                   open file.
+ getc_transform_table - Reads in a WSQ transform table from a
+                   memory buffer.
+ write_transform_table - Writes a WSQ transform table to an
+                   open file.
+ putc_transform_table - Writes a WSQ transform table to a
+                   memory buffer.
+ read_quantization_table - Reads a WSQ quantization table from an
+                   open file.
+ getc_quantization_table - Reads a WSQ quantization table from a
+                   memory buffer.
+ write_quantization_table - Writes a WSQ quantization table to an
+                   open file.
+ putc_quantization_table - Writes a WSQ quantization table to a
+                   memory buffer.
+ read_huffman_table_wsq - Reads a WSQ huffman table from an
+                   open file.
+ getc_huffman_table_wsq - Reads a WSQ huffman table from a
+                   memory buffer.
+ read_frame_header_wsq - Reads a WSQ Frame header from an open file.
+
+ getc_frame_header_wsq - Reads a WSQ Frame header from a memory buffer.
+
+ write_frame_header_wsq - Writes a WSQ Frame header to an open file.
+
+ putc_frame_header_wsq - Writes a WSQ Frame header to a memory buffer.
+
+ read_block_header - Reads a WSQ Block header from an open file.
+
+ getc_block_header - Reads a WSQ Block header from a memory buffer.
+
+ write_block_header - Writes a WSQ Block header to an open file.
+
+ putc_block_header - Writes a WSQ Block header to a memory buffer.
+
+ add_comment_wsq - Inserts a NISTCOM comment block into a
+                   WSQ compressed datastream through an open file.
+ putc_nistcom_wsq - Inserts a NISTCOM comment block into a
+                   WSQ compressed datastream through a memory buffer.
+ read_nistcom_wsq - Gets and returns the first NISTCOM comment block
+                   in an open file.
+ getc_nistcom_wsq - Gets and returns the first NISTCOM comment block
+                   in a memory buffer.
+ print_comments_wsq - Gets and prints the first NISTOCM comment block
+                   in a WSQ compressed memory buffer to a specified
+                   file pointer.
+ build_wsq_trees - Builds WSQ decomposition trees.
+
+ build_w_tree - Build subband x-y locations for creating wavelets.
+
+ w_tree4 - Derives location and size of subband splits.
+
+ build_q_tree - Build WSQ quantization tree of all 64 wavelet
+                subband x-y locations and sizes.
+ q_tree16 - Derive location and size for a 4x4 window of subbands.
+
+ q_tree4 - Derive location and size for 2x2 window of subbands.
+
+ conv_img_2_flt_ret - Converts an image's unsigned character pixels
+                    to floating point values in the range +/- 128.0.
+                    Returns on error.
+ conv_img_2_flt - Converts an image's unsigned character pixels
+                  to floating point values in the range +/- 128.0.
+ conv_img_2_uchar - Converts an image's floating point pixels
+                  unsigned character pixels.
+ variance - Calculates the variances within image subbands.
+
+ quantize - Quantizes the image's wavelet subbands.
+
+ quant_block_sizes - Quantizes an image's subband block.
+
+ unquantize - Unquantizes an image's wavelet subbands.
+
+ wsq_decompose - Computes the wavelet decomposition of an input image.
+
+ get_lets - Compute the wavelet subband decomposition for the image.
+
+ wsq_reconstruct - Reconstructs a lossy floating point pixmap from
+                  a WSQ compressed datastream.
+ join_lets - Reconstruct the image from the wavelet subbands.
+
+ int_sign - Get the sign of the sythesis filter coefficients.
+
+ image_size - Computes the size in bytes of a WSQ compressed image
+                  file, including headers, tables, and parameters.
+ init_wsq_decoder_resources - Initializes memory resources used by the
+                      WSQ decoder
+ free_wsq_decoder_resources - Deallocates memory resources used by the
+                      WSQ decoder
+ delete_comments_wsq - Deletes all comments in a WSQ compressed file.

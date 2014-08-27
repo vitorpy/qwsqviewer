@@ -1,0 +1,133 @@
+ jpegl_decode_mem - Decodes a datastream of JPEGL compressed bytes
+                    from a memory buffer, returning a lossless
+                    reconstructed pixmap.
+ build_huff_decode_table - Builds a table of pixel difference values.
+
+ decode_data - Decodes compressed data buffer.
+
+ nextbits_jpegl - Gets next sequence of bits for data decoding
+                    from an open file.
+ getc_nextbits_jpegl - Gets next sequence of bits for data decoding
+                    from a memory buffer.
+ jpegl_encode_mem - JPEGL encodes image data storing the compressed
+                    bytes to a memory buffer.
+ gen_diff_freqs - Computes pixel differences and their fequency.
+
+ compress_image_intrlv - Compresses difference values from
+                    non-interleaved image data.
+ code_diff - Huffman encodes difference values.
+
+ read_huffman_table - Reads a huffman table from an open file.
+
+ getc_huffman_table - Reads a huffman table from a memory buffer.
+
+ write_huffman_table - Writes a huffman table to an open file.
+
+ putc_huffman_table - Writes a huffman table to a memory buffer.
+
+ find_huff_sizes - Optimizes code sizes by the frequency of
+                   pixel difference values.
+ find_least_freq - Finds the larges pixel difference with the
+                   least frequency.
+ find_num_huff_sizes - Determines the number of codes for each size.
+
+ sort_huffbits - Ensures that no huffman code size is greater than 16.
+
+ sort_code_sizes - Sorts a list of huffman code sizes.
+
+ build_huffcode_table - Sorts huffman codes and sizes.
+
+ build_huffsizes - Defines the code sizes for each difference category.
+
+ build_huffcodes - Defines the huffman codes need for each difference
+                   category.
+ gen_decode_table - Generates the huffman decode table.
+
+ gen_huff_tables - Given frequency of difference categories, generates
+                   huffman tables for use with JPEGL compression.
+ read_huffman_table_jpegl - Reads the next huffman table from an
+                   open JPEGL compressed file.
+ getc_huffman_table_jpegl - Reads the next huffman table from a
+                   JPEGL compressed memory buffer.
+ free_HUFF_TABLES - deallocates a list of huffman tables.
+
+ free_HUFF_TABLE - deallocates a huffman table structure.
+
+ get_IMG_DAT_image - Extracts the image pixmap and returns its
+                     attributes stored in an IMG_DAT structure.
+ setup_IMG_DAT_nonintrlv_encode - Initialize an IMG_DAT structure
+                     for JPEGL compressing a non-interleaved pixmap.
+ setup_IMG_DAT_decode - Initialize an IMG_DAT structure for
+                     compressing a general pixmap.
+ update_IMG_DAT_decode - Augments an IMG_DAT structure used for
+                     decompression with attributes derived from a
+                     JPEGL SCN Header, including the allocation for
+                     the reconstructred pixmap.
+ free_IMG_DAT - Deallocates an IMG_DAT structure.
+ get_ppi_jpegl - Given a JFIF Header from a JPEGL compressed
+                 datastream, extracts/derives the pixel scan
+                 resolution in units of pixel per inch.
+ jpegl_sd4_decode_mem - Decompresses a JPEGL-compressed datastream
+           according to the old image format used in NIST Special
+           Database 4.  This routine should be used to decompress
+           legacy data only.  This old format should be considered
+           obsolete.
+ read_marker_jpegl - Read a specified JPEGL marker from 
+                     an open file.
+ getc_marker_jpegl - Read a specified JPEGL marker from
+                     a memory buffer.
+ setup_jfif_header - Initializes a JFIF Header for JPEGL compression
+                     given pixel scan resolution attributes.
+ read_jfif_header - Reads a JFIF Header from an open JPEGL
+                    compressed file.
+ getc_jfif_header - Reads a JFIF Header from a JPEGL compressed
+                    memory buffer.
+ write_jfif_header - Writes a JFIF Header to an open file.
+
+ putc_jfif_header - Writes a JFIF Header to a memory buffer.
+
+ read_table_jpegl - Reads huffman tables or comment blocks from
+                    an open file.
+ getc_table_jpegl - Reads huffman tables or comment blocks from
+                    a memory buffer.
+ setup_frame_header_jpegl - Initializes a JPEGL Frame Header given
+                    attributes of the pixmap to be compressed.
+ read_frame_header_jpegl - Reads a Frame Header from an open
+                    JPEGL compressed file.
+ getc_frame_header_jpegl - Reads a Frame Header from a JPEGL
+                    compressed memory buffer.
+ write_frame_header_jpegl - Writes a JPEGL Frame Header to
+                    an open file.
+ putc_frame_header_jpegl - Writes a JPEGL Frame Header to
+                    a memory buffer.
+ setup_scan_header - Initializes a JPEGL SCN Header given attributes
+                    of the pixmap to be compressed.
+ read_scan_header - Reads a SCN Header fram an open
+                    JPEGL compressed file.
+ getc_scan_header - Reads a SCN Header fram a JPEGL
+                    compressed memory buffer.
+ write_scan_header - Writes a JPEGL SCN Header to an open file.
+
+ putc_scan_header - Writes a JPEGL SCN Header to a memory buffer.
+
+ read_comment - Reads the contents of a JPEGL comment block from
+                    an open file, returning the comment text as a
+                    null-terminated string.
+ getc_comment - Reads the contents of a JPEGL comment block from
+                    a memory buffer, returning the comment text as a
+                    null-terminated string.
+ write_comment - Writes a text string out as a JPEGL comment block
+                    to an open file.
+ putc_comment - Writes a text string out as a JPEGL comment block
+                    to a memory buffer.
+ add_comment_jpegl - Inserts a comment block into a preexisting JPEGL
+                    datastream.
+ getc_nistcom_jpegl - Find and return the first NISTCOM comment block
+                    from a JPEGL encoded datastream.
+ putc_nistcom_jpegl - Generate a JPEGL NISTCOM comment from the
+                    attributes passed, and writes the NISTCOM and
+                    possibly a general comment to a memory buffer.
+ predict - Used to predict the pixel values in an image.
+
+ categorize - Determines the category for a given difference value.
+

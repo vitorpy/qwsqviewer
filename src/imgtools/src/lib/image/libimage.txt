@@ -1,0 +1,183 @@
+ binary_subimage_copy_8 - copies a binary subimage that is a multiple
+                          of 8 bits wide.
+ binary_subimage_copy_gt - special condition when copying a
+                           binary subimage.
+ binary_subimage_copy_lt - special condition when copying a
+                           binary subimage.
+ binary_subimage_copy_eq - special condition when copying a
+                           binary subimage.
+ binary_subimage_copy - copies a binary subimage to another image
+                        at a specified location.
+ binary_fill_partial - uses a logical operator to copy pixels from a
+                       location in one binary scanline to a location in
+                       another binary scanline.
+ gb - gets a pixel from a binary scanline.
+
+ sb - sets a pixel in a binary scanline.
+
+ binary_image_pad - enlarges the dimensions of a binary bitmap by
+                    padding its byte-aligned width and pixel height.
+ binary_image_mpad - enlarges the dimensions of a binary bitmap by
+                     padding accordiing to specified multiples.
+ dilate_charimage - set false pixel to one if any of 4 neighbors is one
+                    in a character image.
+ get_south8 - return value of char image pixel 1 below of current pixel
+              if defined else return (char)0
+ get_north8 - return value of char image pixel 1 above of current pixel
+              if defined else return (char)0
+ get_east8  - return value of char image pixel 1 right of current pixel
+              if defined else return (char)0
+ get_west8  - return value of char image pixel 1 left  of current pixel
+              if defined else return (char)0
+ findblob - finds a 4-connected blob of true pixels from within a
+            binary character image, returning the blob as a character
+            image.
+ findblob8 - finds an 8-connected blob of true pixels from within a
+            binary character image, returning the blob as a character
+            image.
+ findblobnruns - finds a 4-connected blob of true pixels from within a
+            binary character image, returning the blob as a character
+            image and the horizontal runs comprising the blob.
+ findblobnruns8 - finds an 8-connected blob of true pixels from within a
+            binary character image, returning the blob as a character
+            image and the horizontal runs comprising the blob.
+ findblob_stats_rw - finds a blob of true pixels in a binary char image
+                     (search row maj) and returns the blob "stats"
+ findblob_stats_cl - finds a blob of true pixels in a binary char image
+                     (search col maj) and returns the blob "stats"
+ end_findblobs - deallocates memory upon completion of a findblob session.
+
+ grp4comp - CCITT Group 4 compresses a binary image (bitmap).
+
+ grp4decomp - decodes and reconstructs a CCITT Group 4 compressed
+              binary image (bitmap).
+ WordAlignImage - takes a binary image and pads out its scanlines to
+                  an even word (16-bit) boundary.
+ average_blk - scales an image a specified amount by using
+               uneven block spacing to average the pixel values
+ trim_histtails_contrast_boost - given an input grayscal image, this
+          routine comptues and analyzes the pixel intensity historgram
+          trimming both distribution tails and then "expands" pixel
+          intensities across the computed intensity range.
+ read_and_decode_grayscale_image - identifies and reconstructs a
+          potentially compressed datastream of grayscale image pixels
+          (including AN2K files) for use by fingerprint image applications
+ read_and_decode_image - identifies and reconstructs a
+          potentially compressed datastream of image pixels.
+ ihead_decode_mem - decodes (if necessary) a datastream of
+          IHead formatted pixels from a memory buffer.
+ read_raw_from_filesize - reads a pixmap from an image file based
+               on the size of the file in bytes.
+ write_raw_from_memsize - writes a pimap to an image file given
+               a filled memory buffer.
+ read_ihead - reads a pixmap from an IHead image
+ read_raw - reads a pixmap from a raw image
+ read_raw_or_ihead_wsq - reads a pixmap from either an IHead or raw
+               image file based on a specified flag and tests the
+               pixmap's attributes to ensure WSQ compatability.
+ write_raw_or_ihead - writes a pixmap to either an IHead or
+               raw image file based on a specified flag.
+ snip_rot_subimage - snips a section of an image based on a center
+                     point, angle, width and height into a new image.
+                     Takes nearest pixel value, does not interpolate.
+ snip_rot_subimage_interp - snips a section of an image based on a center
+                     point, angle, width and height into a new image.
+                     It interpolates pixel values based on 4 neighbors.
+ image_type - takes an image data stream and determines if it
+              is from a WSQ, JPEGL, JPEGB, IHead, ANSI_NIST
+              or UNKNOWN file.
+ jpeg_type - takes an image data stream and determines if it
+             is from a JPEGL or JPEGB file.
+ init_image_data - allocates and initializes to zero an image of
+                   specified dimensions and depth.
+ PixPerByte - returns the pixel per byte factor given the depth of
+              a pixel in an image.
+ SizeFromDepth - computes the byte size of an image based on the
+                 image's pixel width, pixel height, and pixel depth.
+ WordAlignFromDepth - computes a byte aligned scanline length given
+                      a pixel width and pixel depth.
+ allocate_image - allocates an image of specified width, height, and
+                  depth. uses calloc for zeroed result.
+ mallocate_image - allocates an image of specified width, height, and
+                  depth. uses malloc for more speed.
+ alloc_short_image - allocates a 16-bit image of specified dimensions.
+
+ alloc_char_image - allocates an 8-bit image of specified dimensions.
+
+ alloc_int_image - allocates a 32-bit image of specified dimensions.
+
+ allocate_aligned_image - allocates an image width a width which is a 
+                          multiple of 16 at least as wide as requested.
+ width_16 - calculate a width which is a multiple of 16 at least equal
+            to the supplied width.
+ intrlv2not_mem - takes an interleaved pixmap and de-interleaves
+                  its pixels into separate component planes.
+ not2intrlv_mem - takes a non-interleaved pixmap and interleaves
+                  its component planes into a single composite plane.
+ compute_component_padding - computes any pixel padding required to
+                  interleave a pixmap.
+ pad_component_planes - pads component planes prior to interleaving
+                  them into a single plane.
+ test_image_size - compares the byte size of a pixmap's datastream
+                  to component plane downsampling factors passed
+                  and detects any discrepancy.
+ parse_w_h_d_ppi - takes a string of comma-separated image attributes
+              and parses in order a width, height, depth, and
+              optional ppi value.
+ parse_h_v_sampfctrs - takes a formatted string and parses
+              component plane downsampling factors.
+ ReadBinaryRaster - reads the contents of a binary IHead image file
+                   into an IHead structure and image memory.
+ ReadIheadRaster - reads the contents of a multi-level IHead image
+                   file into an IHead structure and image memory.
+ rgb2ycc_mem - takes an RGB pixmap and converts it to the YCbCr
+               colorspace.
+ rgb2ycc_intrlv_mem - takes an interleaved RGB pixmap and converts
+               it to the YCbCr colorspace.
+ rgb2ycc_nonintrlv_mem - takes a non-interleaved RGB pixmap and
+               converts it to the YCbCr colorspace.
+ downsample_cmpnts - takes a non-interleaved pixmap and downsamples
+               component planes based on specified factors.
+ window_avr_plane - downsamples a component plane by replacing adjacent
+               windows of specified dimension with the average
+               component value in each window.
+ avr_window - computes the averate component value in a window
+               of specified location and dimension.
+ ycc2rgb_mem - takes a YCbCr pixmap and converts it to the RGB
+               colorspace.
+ ycc2rgb_intrlv_mem - takes an interleaved YCbCr pixmap and converts
+               it to the RGB colorspace.
+ ycc2rgb_nonintrlv_mem - takes a non-interleaved YCbCr pixmap and
+               converts it to the RGB colorspace.
+ upsample_cmpnts - takes a non-interleaved pixmap and upsample
+               component planes based on specified factors.
+ window_fill_plane - upsamples a component plane by replicating a
+               single value into an output window of specifiec
+               dimension in an expanded output plane.
+ fill_window - replicates a component value in a window of specified
+               location and dimension.
+ test_evenmult_sampfctrs - ensures smaller downsample factors are
+               an even multiple of the maximum component downsample
+               factor.
+ rlcomp - run length compresses an image.
+
+ PutNchar - generates the next run length code.
+
+ rldecomp - decompresses a run length encoded image.
+
+ RLL_putc - expands a given run length code.
+
+ ReadSunRaster -  takes the name of a binary or grayscale Sun Rasterfile
+                  and loads the image into memory, returning relevant
+                  image attributes.
+ WriteSunRaster - writes the given binary or grayscale image data to
+                  the specified file in Sun Rasterfile format.
+ thresh_charimage - takes a character image and thresholds it based
+                    a specified factor, overwriting the input image.
+ writeihdrfile - writes the contents of an IHead structure and an
+                 image memory to the specified file.
+ writeihdrsubimage - generates an IHead based on the parameters passed
+                     and writes a subimage to the specified file.
+ write_fields - takes a list of IHead structures and binary images
+                and writes them to individual files with the specified
+                root filename and corresponding extension name.

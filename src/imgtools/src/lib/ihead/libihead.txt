@@ -1,0 +1,98 @@
+ getcomptype - given a compression string, returns the corresponding
+               compression code defined in ihead.h .
+ get_id - get the identity attribute from an IHead structure.
+
+ set_id - set the identity attribute from an IHead structure.
+
+ get_created - get the creation date attribute from an IHead structure.
+
+ set_created - set the creation date attribute of an IHead structure.
+
+ get_width - get the pixel width attribute from an IHead structure.
+
+ set_width - set the pixel width attribute of an IHead structure.
+
+ get_height - get the pixel height attribute from an IHead structure.
+
+ set_height - set the pixel height attribute of an IHead structure.
+
+ get_depth - get the pixel depth attribute from an IHead structure.
+
+ set_depth - set the pixel depth attribute of an IHead structure.
+
+ get_density - get the pixel density attribute from an IHead structure.
+
+ set_density - set the pixel density attribute of an IHead structure.
+
+ get_compression - get the compression code attribute from an
+                   IHead structure.
+ set_compression - set the compression code  attribute of an
+                   IHead structure.
+ get_complen - get the compressed data length attribute from
+               an IHead structure.
+ set_complen - set the compressed data length attribute of
+               an IHead structure.
+ get_align - get the scanline alignment attribute from an
+             IHead structure.
+ set_align - set the scanline alignment attribute of an IHead structure.
+
+ get_unitsize - get the memory unit size attribute from
+                an IHead structure.
+ set_unitsize - set the memory unit size attribute of
+                an IHead structure.
+ get_sigbit - get the bit order attribute from an IHead structure.
+
+ set_sigbit - set the bit order attribute of an IHead structure.
+
+ get_byte_order - get the byte order attribute from an IHead structure.
+
+ set_byte_order - set the byte order attribute of an IHead structure.
+
+ get_pix_offset - get the column pixel offset attribute from
+                  an IHead structure.
+ set_pix_offset - set the column pixel offset attribute of
+                  an IHead structure.
+ get_whitepix - get the white pixel attribute from an IHead structure.
+
+ set_whitepix - set the white pixel attribute of an IHead structure.
+
+ get_issigned - get the memory unit signed/unsigned attribute from
+                an IHead structure.
+ set_issigned - set the memory unit signed/unsigned attribute of
+                an IHead structure.
+ get_rm_cm - get the row/column major attribute from an IHead structure.
+
+ set_rm_cm - set the row/column major attribute of an IHead structure.
+
+ get_tb_bt - get the top-to-bottom/bottom-to-top attribute from
+             an IHead structure.
+ set_tb_bt - set the top-to-bottom/bottom-to-top attribute of
+             an IHead structure.
+ get_lr_rl - get the right-to-left/left-to-right attribute from
+             an IHead structure.
+ set_lr_rl - set the right-to-left/left-to-right attribute of
+             an IHead structure.
+ get_parent - get the parent image attribute from an IHead structure.
+
+ set_parent - set the parent image attribute of an IHead structure.
+
+ get_par_x - get the x-coordinate cut from parent attribute from
+             an IHead structure.
+ set_par_x - set the x-coordinate cut from parent attribute of
+             an IHead structure.
+ get_par_y - get the y-coordinate cut from parent attribute from
+             an IHead structure.
+ set_par_y - set the y-coordinate cut from parent attribute of
+             an IHead structure.
+ nullihdr - initializes an allocated IHead structure to be empty.
+
+ parseihdrid - takes the identity attribute from an hsf box image
+               and parses out the box index and the reference string.
+ printihdr - formats the attributes of a specified IHead structure
+             into a report and prints it to an open file pointer.
+ readihdr - reads the contents of an open file pointer into an
+            IHead structure.
+ valid_compression - determines if the compression code passed is
+                     supported by installed software.
+ writeihdr - writes the contents of an IHead structure to an open
+             file pointer.
