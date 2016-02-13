@@ -1,6 +1,8 @@
 TARGET = qwsqviewer
 TEMPLATE = app
 DEPENDPATH += src
+INCLUDEPATH += inc \
+    inc\imgtools
 
 CONFIG(debug, debug|release):DESTDIR += ../bin/debug/
 CONFIG(release, debug|release):DESTDIR += ../bin/release/
@@ -68,4 +70,36 @@ FORMS += \
 HEADERS += \
     inc/mainwindow.h \
     inc/aboutwindow.h \
-    inc/canvas.h
+    inc/canvas.h \
+inc/imgtools/jpegb.h \
+inc/imgtools/nistcom.h \
+inc/imgtools/bitmasks.h \
+inc/imgtools/dataio.h \
+inc/imgtools/grp4comp.h \
+inc/imgtools/jpeglsd4.h \
+inc/imgtools/imgutil.h \
+inc/imgtools/ioutil.h \
+inc/imgtools/swap.h \
+inc/imgtools/parsargs.h \
+inc/imgtools/masks.h \
+inc/imgtools/findblob.h \
+inc/imgtools/dpy.h \
+inc/imgtools/ihead.h \
+inc/imgtools/wsq.h \
+inc/imgtools/jpegl.h \
+inc/imgtools/dpydepth.h \
+inc/imgtools/bits.h \
+inc/imgtools/usebsd.h \
+inc/imgtools/imgtype.h \
+inc/imgtools/computil.h \
+inc/imgtools/display.h \
+inc/imgtools/event.h \
+inc/imgtools/rgb_ycc.h \
+inc/imgtools/imgboost.h \
+inc/imgtools/intrlv.h \
+inc/imgtools/img_io.h \
+inc/imgtools/imgdecod.h \
+inc/imgtools/binops.h \
+inc/imgtools/sunrast.h \
+inc/imgtools/grp4deco.h \
+inc/imgtools/dilate.h
