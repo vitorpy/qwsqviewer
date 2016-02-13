@@ -2,7 +2,7 @@ TARGET = qwsqviewer
 TEMPLATE = app
 DEPENDPATH += src
 INCLUDEPATH += inc \
-    inc\imgtools
+    inc/imgtools
 
 CONFIG(debug, debug|release):DESTDIR += ../bin/debug/
 CONFIG(release, debug|release):DESTDIR += ../bin/release/
@@ -102,4 +102,8 @@ inc/imgtools/imgdecod.h \
 inc/imgtools/binops.h \
 inc/imgtools/sunrast.h \
 inc/imgtools/grp4deco.h \
-inc/imgtools/dilate.h
+inc/imgtools/dilate.h \
+inc/util.h \
+inc/fet.h \
+inc/defs.h \
+inc/memalloc.h
