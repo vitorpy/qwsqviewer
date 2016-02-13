@@ -57,10 +57,15 @@ src/imgtools/src/lib/wsq/huff.c \
 src/imgtools/src/lib/wsq/util.c \
 src/imgtools/src/lib/wsq/cropcoeff.c \
 src/imgtools/src/lib/wsq/ppi.c \
-    src/mainwindow.cpp
+    src/mainwindow.cpp \
+    src/aboutwindow.cpp \
+    src/canvas.cpp
 
 FORMS += \
-    ui/mainwindow.ui
+    ui/mainwindow.ui \
+    ui/aboutwindow.ui
 
 HEADERS += \
-    inc/mainwindow.h
+    inc/mainwindow.h \
+    inc/aboutwindow.h \
+    inc/canvas.h
