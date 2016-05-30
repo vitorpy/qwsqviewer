@@ -1,3 +1,5 @@
+QT += widgets
+
 TARGET = qwsqviewer
 TEMPLATE = app
 DEPENDPATH += src
