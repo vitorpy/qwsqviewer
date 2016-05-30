@@ -6,8 +6,8 @@ DEPENDPATH += src
 INCLUDEPATH += inc \
     inc/imgtools
 
-CONFIG(debug, debug|release):DESTDIR += ../bin/debug/
-CONFIG(release, debug|release):DESTDIR += ../bin/release/
+#CONFIG(debug, debug|release):DESTDIR += ../bin/debug/
+#CONFIG(release, debug|release):DESTDIR += ../bin/release/
 
 SOURCES += src/imgtools/src/lib/image/readihdr.c \
 src/imgtools/src/lib/image/imgdecod.c \
