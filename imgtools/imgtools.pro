@@ -3,32 +3,6 @@ TEMPLATE = lib
 INCLUDEPATH += include ../commonnbis/include
 
 SOURCES += \
-src/bin/sd_rfmt/sd_rfmt.c \
-src/bin/diffbyts/diffbyts.c \
-src/bin/cwsq/cwsq.c \
-src/bin/rdimgwh/rdimgwh.c \
-src/bin/cjpegl/cjpegl.c \
-src/bin/wrwsqcom/wrwsqcom.c \
-src/bin/djpegl/djpegl.c \
-src/bin/dpyimage/dpyio.c \
-src/bin/dpyimage/dpyimage.c \
-src/bin/dpyimage/dpytmp.c \
-src/bin/dpyimage/dpynorm.c \
-src/bin/dpyimage/dpyx.c \
-src/bin/dpyimage/tally.c \
-src/bin/dpyimage/dpymain.c \
-src/bin/dpyimage/dpypipe.c \
-src/bin/dwsq/dwsq.c \
-src/bin/dwsq14/dwsq14.c \
-src/bin/djpeglsd/djpeglsd.c \
-src/bin/intr2not/intr2not.c \
-src/bin/dlwsqcom/dlwsqcom.c \
-src/bin/ycc2rgb/ycc2rgb.c \
-src/bin/djpegb/djpegb.c \
-src/bin/cjpegb/cjpegb.c \
-src/bin/rdwsqcom/rdwsqcom.c \
-src/bin/not2intr/not2intr.c \
-src/bin/rgb2ycc/rgb2ycc.c \
 src/lib/image/readihdr.c \
 src/lib/image/imgdecod.c \
 src/lib/image/imgtype.c \
