@@ -1,8 +1,3 @@
 TEMPLATE = subdirs
-SUBDIRS = common \
-    restaurante
+SUBDIRS = app commonnbis imgtools
 
-restaurante.depends = common
-
-RESOURCES += \
-    restaurante/siacrestaurante.qrc
