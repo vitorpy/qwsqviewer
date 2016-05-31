@@ -82,7 +82,7 @@ FFT. */
 #include <f2c.h>
 /* Following lines added by MDG on 03-10-05 */
 #include <util.h>
-#include <little.h>
+/*#include <little.h>*/
 extern int cffti(int *, real *);
 extern int cfftf(int *, real *, real *);
 extern int cfftb(int *, real *, real *);
