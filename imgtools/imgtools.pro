@@ -3,6 +3,40 @@ CONFIG = staticlib
 
 INCLUDEPATH += include ../commonnbis/include ../an2k/include
 
+HEADERS += \
+include/jpegb.h \
+include/nistcom.h \
+include/bitmasks.h \
+include/dataio.h \
+include/grp4comp.h \
+include/jpeglsd4.h \
+include/imgutil.h \
+include/ioutil.h \
+include/swap.h \
+include/parsargs.h \
+include/masks.h \
+include/findblob.h \
+include/dpy.h \
+include/ihead.h \
+include/wsq.h \
+include/jpegl.h \
+include/dpydepth.h \
+include/bits.h \
+include/usebsd.h \
+include/imgtype.h \
+include/computil.h \
+include/display.h \
+include/event.h \
+include/rgb_ycc.h \
+include/imgboost.h \
+include/intrlv.h \
+include/img_io.h \
+include/imgdecod.h \
+include/binops.h \
+include/sunrast.h \
+include/grp4deco.h \
+include/dilate.h
+
 SOURCES += \
 src/lib/image/readihdr.c \
 src/lib/image/imgdecod.c \

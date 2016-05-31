@@ -5,6 +5,32 @@ INCLUDEPATH = \
             include \
             ../imgtools/include
 
+HEADERS += \
+include/imgsnip.h \
+include/imgavg.h \
+include/jmorecfg.h \
+include/mlp \
+include/mlp/lbfgs_dr.h \
+include/mlp/macros.h \
+include/mlp/fmt_msgs.h \
+include/mlp/scg.h \
+include/mlp/get_phr.h \
+include/mlp/mtch_pnm.h \
+include/mlp/lims.h \
+include/mlp/rd_words.h \
+include/mlp/tda.h \
+include/fixup.h \
+include/util.h \
+include/version.h \
+include/jconfig.h \
+include/defs.h \
+include/usebsd.h \
+include/jerror.h \
+include/invbyte.h \
+include/f2c.h \
+include/fet.h \
+include/memalloc.h
+
 SOURCES +=  \
             src/lib/fet/printfet.c \
             src/lib/fet/nistcom.c \

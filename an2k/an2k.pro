@@ -3,6 +3,17 @@ CONFIG = staticlib
 
 INCLUDEPATH += include ../imgtools/include ../commonnbis/include
 
+HEADERS += \
+include/histogen.h \
+include/dpyan2k.h \
+include/jpeg2k.h \
+include/dpyimage.h \
+include/an2k.h \
+include/png_dec.h \
+include/dpyx.h \
+include/chkan2k.h \
+include/an2kseg.h
+
 SOURCES += \
 src/lib/an2k/append.c \
 src/lib/an2k/subst.c \
