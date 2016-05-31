@@ -8,7 +8,8 @@ INCLUDEPATH += inc
 SOURCES +=  \
             src/mainwindow.cpp \
             src/aboutwindow.cpp \
-            src/canvas.cpp
+            src/canvas.cpp \
+    src/main.cpp
 
 FORMS += \
             ui/mainwindow.ui \

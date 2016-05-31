@@ -25,7 +25,7 @@ SOURCES +=  \
             src/lib/cblas/xerbla.c \
             src/lib/cblas/sger.c \
             src/lib/cblas/sasum.c \
-            src/lib/cblas/lsame.c \
+#            src/lib/cblas/lsame.c \
             src/lib/cblas/ssyr2.c \
             src/lib/cblas/sswap.c \
             src/lib/cblas/scopy.c \

@@ -1,26 +1,8 @@
 TEMPLATE = lib
 
-INCLUDEPATH += include
+INCLUDEPATH += include ../imgtools/include ../commonnbis/include
 
 SOURCES += \
-src/bin/an2k2iaf/an2k2iaf.c \
-src/bin/txt2an2k/txt2an2k.c \
-src/bin/histogen/chkfile.c \
-src/bin/histogen/histogen.c \
-src/bin/an2k2txt/an2k2txt.c \
-src/bin/iaf2an2k/iaf2an2k.c \
-src/bin/cropcoeff/main.c \
-src/bin/cropcoeff/autocrop.c \
-src/bin/an2ktool/an2ktool.c \
-src/bin/dpyan2k/dpyimage.c \
-src/bin/dpyan2k/dpyan2k.c \
-src/bin/dpyan2k/dpyx.c \
-src/bin/dpyan2k/dpymain.c \
-src/bin/chkan2k/chkan2k.c \
-src/bin/chkan2k/config.c \
-src/bin/chkan2k/chkfile.c \
-src/bin/chkan2k/logger.c \
-src/bin/chkan2k/combos.c \
 src/lib/an2k/append.c \
 src/lib/an2k/subst.c \
 src/lib/an2k/size.c \
