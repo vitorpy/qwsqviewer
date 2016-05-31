@@ -1,4 +1,5 @@
 TEMPLATE = lib
+CONFIG = staticlib
 
 INCLUDEPATH += include ../commonnbis/include ../an2k/include
 

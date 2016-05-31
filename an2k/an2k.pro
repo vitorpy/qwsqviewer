@@ -1,4 +1,5 @@
 TEMPLATE = lib
+CONFIG = staticlib
 
 INCLUDEPATH += include ../imgtools/include ../commonnbis/include
 
