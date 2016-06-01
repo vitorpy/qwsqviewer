@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(_canvas);
 
     CHECK(connect(_ui->actionOpen, SIGNAL(triggered(bool)), this, SLOT(open())));
-    CHECK(connect(_ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(about)));
+    CHECK(connect(_ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(about())));
     CHECK(connect(_ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(exit())));
 }
 
