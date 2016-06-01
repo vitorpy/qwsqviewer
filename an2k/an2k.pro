@@ -1,6 +1,8 @@
 TEMPLATE = lib
 CONFIG = staticlib
 
+QMAKE_LINK = $$QMAKE_LINK_C
+
 INCLUDEPATH += include ../imgtools/include ../commonnbis/include
 
 HEADERS += \

@@ -3,9 +3,16 @@
 #include <QFileDialog>
 #include <QString>
 #include "canvas.h"
-#include "util.h"
+#include "utils.h"
 #include "aboutwindow.h"
 #include <QMessageBox>
+
+extern "C" {
+#include "util.h"
+#include "ihead.h"
+#include "wsq.h"
+#include "img_io.h"
+}
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -42,6 +49,20 @@ void MainWindow::open()
 {
     QString file = QFileDialog::getOpenFileName(this);
 
-    if (!file.isEmpty())
-        QMessageBox::warning(this, tr("qwsqviewwer"), file);
+    if (file.isEmpty())
+        return;
+
+    unsigned char *idata;
+    int ilen;
+
+    int ret = read_raw_from_filesize(file.toLocal8Bit().data(), &idata, &ilen);
+
+    /*
+     *    if((ret = wsq_decode_mem(&odata, &width, &height, &depth, &ppi,
+                           &lossyflag, idata, ilen))){
+      free(idata);
+      exit(ret);
+   }*/
+
+    QMessageBox::warning(this, tr("qwsqviewwer"), file);
 }

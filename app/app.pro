@@ -3,7 +3,7 @@ QT += widgets
 TARGET = qwsqviewer
 TEMPLATE = app
 DEPENDPATH += src inc
-INCLUDEPATH += inc
+INCLUDEPATH += inc ../imgtools/include ../commonnbis/include ../an2k/include
 LIBS += ../commonnbis/libcommonnbis.a ../an2k/liban2k.a ../imgtools/libimgtools.a
 
 SOURCES +=  \
@@ -20,7 +20,7 @@ HEADERS += \
             inc/mainwindow.h \
             inc/aboutwindow.h \
             inc/canvas.h \
-            inc/util.h
+    inc/utils.h
 
 RESOURCES += \
     app.qrc

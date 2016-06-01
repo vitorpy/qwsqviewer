@@ -1,6 +1,10 @@
 TEMPLATE = lib
 CONFIG = staticlib
 
+QMAKE_LINK = $$QMAKE_LINK_C
+
+LIBS += ../commonnbis/libcommonnbis.a
+
 INCLUDEPATH += include ../commonnbis/include ../an2k/include
 
 HEADERS += \
