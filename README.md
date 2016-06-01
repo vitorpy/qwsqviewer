@@ -10,3 +10,10 @@ TODO
 ----
 
 * Breakup .pro into subdirs as .o have the same name for NBIS. Generate either multiple .a or .sos and use id -rpath for linking
+
+Attribution
+-----------
+
+Fingerprint image: https://en.wikipedia.org/wiki/User:Cyrillic - Creative Commons Attribution-Share Alike 3.0 Unported
+NBIS: public domain 
+

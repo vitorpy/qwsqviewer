@@ -22,3 +22,6 @@ HEADERS += \
             inc/canvas.h \
             inc/util.h
 
+RESOURCES += \
+    app.qrc
+
