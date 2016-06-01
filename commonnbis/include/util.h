@@ -57,6 +57,10 @@ of the software.
 #define False	0
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* bres.c */
 extern int bres_line_alloc(const int, const int, const int, const int, int **,
            int **, int *, int *);
@@ -95,4 +99,9 @@ extern char *index(const char *, int);
 extern void sleep (const int);
 #endif
 */
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif /* !_UTIL_H */

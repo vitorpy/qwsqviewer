@@ -1,7 +1,8 @@
 TEMPLATE = lib
-#CONFIG = staticlib
+CONFIG = staticlib
 
-QMAKE_LINK = $$QMAKE_LINK_C
+#QMAKE_LINK = $$QMAKE_LINK_C
+CONFIG += object_parallel_to_source
 
 INCLUDEPATH = \
             include \
@@ -54,7 +55,7 @@ SOURCES +=  \
             src/lib/cblas/xerbla.c \
             src/lib/cblas/sger.c \
             src/lib/cblas/sasum.c \
-#            src/lib/cblas/lsame.c \
+            src/lib/cblas/lsame.c \
             src/lib/cblas/ssyr2.c \
             src/lib/cblas/sswap.c \
             src/lib/cblas/scopy.c \

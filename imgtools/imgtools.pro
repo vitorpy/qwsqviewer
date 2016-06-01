@@ -2,8 +2,9 @@ TEMPLATE = lib
 #CONFIG = staticlib
 
 QMAKE_LINK = $$QMAKE_LINK_C
+CONFIG += object_parallel_to_source
 
-LIBS += ../commonnbis/libcommonnbis.so
+#LIBS += ../commonnbis/libcommonnbis.a
 
 INCLUDEPATH += include ../commonnbis/include ../an2k/include
 
