@@ -20,4 +20,5 @@ HEADERS += \
             inc/mainwindow.h \
             inc/aboutwindow.h \
             inc/canvas.h \
+            inc/util.h
 

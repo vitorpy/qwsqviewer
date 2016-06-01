@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class Canvas;
+
 namespace Ui {
 class MainWindow;
 }
@@ -15,8 +17,14 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void about();
+    void exit();
+    void open();
+
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *_ui;
+    Canvas* _canvas;
 };
 
 #endif // MAINWINDOW_H
