@@ -1,9 +1,9 @@
 TEMPLATE = lib
-CONFIG = staticlib
+#CONFIG = staticlib
 
 QMAKE_LINK = $$QMAKE_LINK_C
 
-LIBS += ../commonnbis/libcommonnbis.a
+LIBS += ../commonnbis/libcommonnbis.so
 
 INCLUDEPATH += include ../commonnbis/include ../an2k/include
 
@@ -67,21 +67,21 @@ src/lib/image/rgb_ycc.c \
 src/lib/image/bitmasks.c \
 src/lib/image/sunrast.c \
 src/lib/image/grp4deco.c \
-#src/lib/jpegl/encoder.c \
-#src/lib/jpegl/decoder.c \
-#src/lib/jpegl/tableio.c \
-#src/lib/jpegl/imgdat.c \
-#src/lib/jpegl/sd4util.c \
-#src/lib/jpegl/huff.c \
-#src/lib/jpegl/util.c \
-#src/lib/jpegl/ppi.c \
-#src/lib/jpegl/huftable.c \
-#src/lib/ihead/readihdr.c \
+src/lib/jpegl/encoder.c \
+src/lib/jpegl/decoder.c \
+src/lib/jpegl/tableio.c \
+src/lib/jpegl/imgdat.c \
+src/lib/jpegl/sd4util.c \
+src/lib/jpegl/huff.c \
+src/lib/jpegl/util.c \
+src/lib/jpegl/ppi.c \
+src/lib/jpegl/huftable.c \
+src/lib/ihead/readihdr.c \
 src/lib/ihead/nullihdr.c \
 src/lib/ihead/prntihdr.c \
 src/lib/ihead/parsihdr.c \
 src/lib/ihead/valdcomp.c \
-#src/lib/ihead/writihdr.c \
+src/lib/ihead/writihdr.c \
 src/lib/ihead/getcomp.c \
 src/lib/ihead/getnset.c \
 src/lib/wsq/encoder.c \

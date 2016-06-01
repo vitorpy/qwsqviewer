@@ -1,5 +1,5 @@
 TEMPLATE = lib
-CONFIG = staticlib
+#CONFIG = staticlib
 
 QMAKE_LINK = $$QMAKE_LINK_C
 
