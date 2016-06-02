@@ -46,6 +46,13 @@ of the software.
 /* jconfig.cfg --- source file edited by configure script */
 /* see jconfig.doc for explanations */
 
+#ifndef _JCONFIG_H
+#define _JCONFIG_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define HAVE_PROTOTYPES 
 #define HAVE_UNSIGNED_CHAR 
 #define HAVE_UNSIGNED_SHORT 
@@ -87,3 +94,9 @@ of the software.
 #undef PROGRESS_REPORT
 
 #endif /* JPEG_CJPEG_DJPEG */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

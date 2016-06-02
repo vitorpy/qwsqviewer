@@ -48,6 +48,9 @@ of the software.
 /*           Author: Michael D. Garris 3/23/89     */
 /***************************************************/
 
+#ifndef _EVENT_H
+#define _EVENT_H
+
 #define XMButton(event)  (((XButtonEvent *)&event)->button)
 
 #define XMGetButton(display,event,button) \
@@ -60,3 +63,4 @@ do{ \
    XNextEvent(display,&event); \
 }while(event.type != (_type));
 
+#endif

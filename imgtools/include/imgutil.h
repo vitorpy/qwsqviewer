@@ -45,6 +45,9 @@ of the software.
 #ifndef _IMGUTIL_H
 #define _IMGUTIL_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* imageops.c */
 extern int WordAlignImage(unsigned char **, int *, int *,
@@ -76,5 +79,9 @@ extern void rlcomp(unsigned char *, int, unsigned char *, int *, int);
 extern void PutNchar (int, int, unsigned char **, int *, int);
 extern void rldecomp(unsigned char *, int, unsigned char *, int *, int);
 extern void RLL_putc (unsigned char **, unsigned char, int, int *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_IMGUTIL_H */

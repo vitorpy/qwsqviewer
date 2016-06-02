@@ -61,6 +61,10 @@ of the software.
 /* Case for getting ANY marker. */
 #define ANY   0xffff
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* encoder.c */
 extern int jpegb_encode_mem(unsigned char **, int *, const int,
                             unsigned char *, const int, const int,
@@ -91,5 +95,9 @@ extern void jpeg_membuf_src(j_decompress_ptr, JOCTET *, size_t);
 
 /* ppi.c */
 extern int get_ppi_jpegb(int *, j_decompress_ptr);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_JPEGB_H */

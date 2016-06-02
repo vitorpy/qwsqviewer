@@ -130,6 +130,10 @@ struct compressed_descriptor {
 	
 ******************************************************************************/
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* grp4deco.c */
 extern void grp4decomp(unsigned char *, int, int, int, unsigned char *, int *);
 extern void control_decompression( struct compressed_descriptor *,
@@ -153,5 +157,9 @@ extern void write_bits_d(unsigned SHORT, unsigned SHORT);
 extern void prepare_to_read_bits(char *);
 extern SHORT read_bit(void);
 extern SHORT find_run_length_code(SHORT);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_GRP4DECO_H */

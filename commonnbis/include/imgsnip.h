@@ -45,6 +45,9 @@ of the software.
 #ifndef _IMGSNIP_H
 #define _IMGSNIP_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern void snip_rot_subimage(unsigned char *, const int, const int,
                 unsigned char *, const int, const int, const int, const int,
@@ -52,5 +55,9 @@ extern void snip_rot_subimage(unsigned char *, const int, const int,
 extern void snip_rot_subimage_interp(unsigned char *, const int, const int,
                 unsigned char *, const int, const int, const int, const int,
                 const float, unsigned char);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_IMGSNIP_H */

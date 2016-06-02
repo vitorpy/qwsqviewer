@@ -64,6 +64,11 @@ of the software.
  */
 #ifndef JMESSAGE
 #ifndef JERROR_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* First time through, define the enum list */
 #define JMAKE_ENUM_LIST
 #else
@@ -331,5 +336,10 @@ JMESSAGE(JWRN_TOO_MUCH_DATA, "Application transferred too many scanlines")
   ((cinfo)->err->msg_code = (code), \
    strncpy((cinfo)->err->msg_parm.s, (str), JMSG_STR_PARM_MAX), \
    (*(cinfo)->err->emit_message) ((j_common_ptr) (cinfo), (lvl)))
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* JERROR_H */

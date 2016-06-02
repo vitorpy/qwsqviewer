@@ -108,6 +108,10 @@ typedef struct ihead{
 
 #define BYTE_SIZE	8.0
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* getcomp.c */
 extern int getcomptype(char *);
 /* getnset.c */
@@ -165,5 +169,9 @@ extern IHEAD *readihdr(register FILE *);
 extern int valid_compression(int);
 /* writihdr.c */
 extern void writeihdr(FILE *, IHEAD *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* !_IHEAD_H */

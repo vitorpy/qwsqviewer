@@ -153,6 +153,10 @@ struct uncompressed_descriptor {
 	
 ******************************************************************************/
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* grp4comp.c */
 extern void grp4comp(unsigned char *, int, int, int, unsigned char *, int *);
 extern void control_compression(struct uncompressed_descriptor *,
@@ -181,5 +185,9 @@ extern void write_bits_c(char *);
 extern unsigned int flush_buffer(void);
 extern void write_run_length(SHORT, SHORT);
 extern void process_char(unsigned char, struct parameters *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_GRP4COMP_H */

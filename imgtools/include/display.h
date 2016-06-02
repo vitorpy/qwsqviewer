@@ -48,6 +48,9 @@ of the software.
 #include <math.h>
 #include <memory.h>
 
+#ifndef _DISPLAY_H
+#define _DISPLAY_H
+
 #ifndef TRUE
 #define TRUE	1
 #define FALSE	0
@@ -253,3 +256,5 @@ int _sxb,_dbw,_sbw,_dindex=0,_sindex,_i; \
      } \
   } \
 }
+
+#endif

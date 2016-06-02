@@ -48,6 +48,10 @@ of the software.
 #include <stdio.h>
 #include <stdlib.h> /* Added by MDG on 03-10-05 */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifndef True
 #define True		1
 #define False		0
@@ -92,5 +96,9 @@ extern int  updatefet_ret(char *, char *, FET *);
 /* writefet.c */
 extern void writefetfile(char *, FET *);
 extern int  writefetfile_ret(char *, FET *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* !_FET_H */

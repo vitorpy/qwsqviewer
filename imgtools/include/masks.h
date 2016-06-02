@@ -41,5 +41,17 @@ of the software.
 
 *******************************************************************************/
 
+#ifndef _MASKS_H
+#define _MASKS_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern unsigned char bit_masks[8];
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

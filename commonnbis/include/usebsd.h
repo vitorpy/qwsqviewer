@@ -63,6 +63,10 @@ of the software.
 #ifndef _USEBSD_H
 #define _USEBSD_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #if defined(__linux__) && !defined(_BSD_SOURCE)
 #define _BSD_SOURCE
 #elif defined(__CYGWIN__) && defined(__STRICT_ANSI__)
@@ -74,5 +78,9 @@ of the software.
 /* included first, so to help ensure this, <stdio.h> is      */
 /* included here at the end of this file */
 #include <stdio.h>
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_USEBSD_H */

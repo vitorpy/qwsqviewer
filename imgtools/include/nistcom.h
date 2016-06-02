@@ -78,6 +78,9 @@ typedef FET NISTCOM;
 #define NCM_AGE         "AGE"
 #define NCM_SD_ID       "SD_ID"           /* 4,9,10,14,18 */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* nistcom.c */
 extern int combine_nistcom(NISTCOM **, const int, const int,
@@ -104,5 +107,8 @@ extern int sd18_ihead_to_nistcom(NISTCOM **, IHEAD *);
 extern int get_sd_class(char *, const int, char *);
 extern int get_class_from_ncic_class_string(char *, const int, char *);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_NISTCOM_H */

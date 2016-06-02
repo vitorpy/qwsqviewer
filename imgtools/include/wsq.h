@@ -45,6 +45,10 @@ of the software.
 #ifndef _WSQ_H
 #define _WSQ_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifndef _STDIO_H
 #include <stdio.h>
 #endif
@@ -336,5 +340,9 @@ extern void init_wsq_decoder_resources(void);
 extern void free_wsq_decoder_resources(void);
 
 extern int delete_comments_wsq(unsigned char **, int *, unsigned char *, int);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_WSQ_H */

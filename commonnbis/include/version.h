@@ -45,11 +45,19 @@ of the software.
 #ifndef _VERSION_H
 #define _VERSION_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define ANSI_NIST_VERSION	"ANSI/NIST-ITL 1-2007"
 #define NBIS_NON_EXPORT_CONTROL_VERSION	"Release 4.1.0"
 
 #define  getVersion() \
    printf("Standard Version: %s\nNBIS Non-Export Control Software Version: " \
      "%s\n", ANSI_NIST_VERSION, NBIS_NON_EXPORT_CONTROL_VERSION)
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_VERSION_H */

@@ -49,6 +49,10 @@ of the software.
 
 #define IMG_IGNORE  2
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern int read_and_decode_grayscale_image(char *, int *, unsigned char **,
                                     int *, int *, int *, int *, int *);
 
@@ -61,5 +65,9 @@ extern int read_and_decode_image(char *, int *, unsigned char **, int *,
 
 extern int ihead_decode_mem(unsigned char **, int *, int *, int *,
                             int *, int *, unsigned char *, const int);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_IMGDECOD_H */

@@ -88,10 +88,18 @@ typedef struct sunrasterhdr {
  *   of 16 bits.
  */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* sunrast.c */
 extern int ReadSunRaster(const char *, SUNHEAD **, unsigned char **, int *,
                          unsigned char **, int *, int *, int *, int *);
 extern int WriteSunRaster(char *, unsigned char *, const int, const int,
                          const int);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

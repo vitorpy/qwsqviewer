@@ -53,6 +53,10 @@ of the software.
 #define MaxLineLength	512
 #define EOL	EOF
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* fileexst.c */
 extern int file_exists(char *);
 /* filehead.c */
@@ -72,5 +76,9 @@ extern void newextlong(char **, char *);
 /* readutil.c */
 extern int read_strstr_file(char *, char ***, char ***, int *, const int);
 extern int read_fltflt_file(char *, float **, float **, int *, const int);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_IOUTIL_H */

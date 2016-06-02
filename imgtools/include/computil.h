@@ -45,9 +45,17 @@ of the software.
 #ifndef _COMPUTIL_H
 #define _COMPUTIL_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern int read_skip_marker_segment(const unsigned short, FILE *);
 extern int getc_skip_marker_segment(const unsigned short,
                             unsigned char **, unsigned char *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_COMPUTIL_H */
 

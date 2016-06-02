@@ -49,6 +49,9 @@ of the software.
 #define MAX_CMPNTS   4
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern int intrlv2not_mem(unsigned char **, int *, unsigned char *,
                    const int, const int, const int, int *, int *, const int);
@@ -64,5 +67,9 @@ extern int pad_component_planes(unsigned char *, int *, int *, int *,
 
 extern int test_image_size(const int, const int, const int, int *, int *,
                    const int, const int);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_INTRLV_H */

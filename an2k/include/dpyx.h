@@ -80,6 +80,9 @@ of the software.
                                 Button4Mask| \
                                 Button5Mask))
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* X-Window global references. */
 extern Display *display;
@@ -103,5 +106,9 @@ extern int initwin(int wx, int wy, unsigned int ww,
                    unsigned int wh, unsigned int depth, unsigned long wp);
 extern int set_gray_colormap(Display *, Colormap, unsigned int, unsigned long);
 extern int gray_colormap(Colormap *, Display *, Visual **, unsigned int);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* !_DPYX_H */

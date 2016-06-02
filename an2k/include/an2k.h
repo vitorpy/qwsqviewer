@@ -518,6 +518,10 @@ extern unsigned int binary_signature_records[];
 #define CSP_SRGB                   "SRGB"
 #define CSP_SYCC                   "SYCC"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /***********************************************************************/
 /* ALLOC.C : ALLOCATION ROUTINES */
 extern int alloc_ANSI_NIST(ANSI_NIST **);
@@ -881,5 +885,9 @@ extern int decrement_numeric_item(const int, const int, const int,
 extern int value2field(FIELD **, const int, const int, const char *);
 extern int value2subfield(SUBFIELD **, const char *);
 extern int value2item(ITEM **, const char *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_AN2K_H */

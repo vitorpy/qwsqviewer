@@ -192,6 +192,10 @@ typedef struct sheader {
    unsigned char Ahl;
 } SCN_HEADER;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* GLOBAL VARIABLES */
 extern int debug;
 
@@ -299,5 +303,9 @@ extern int putc_nistcom_jpegl(char *, const int, const int, const int,
 extern int predict(short *, unsigned char *, const int, const int, const int,
                    const int, const int);
 extern short categorize(const short);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_JPEGL_H */

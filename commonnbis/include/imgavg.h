@@ -45,8 +45,15 @@ of the software.
 #ifndef _IMGAVG_H
 #define _IMGAVG_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern int average_blk(unsigned char *, const int, const int, const float,
                 const float, unsigned char **, int *, int *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_IMGAVG_H */

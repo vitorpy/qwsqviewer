@@ -62,11 +62,19 @@ of the software.
 #include <an2k.h>
 #include <dpyimage.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*********************************************************************/
 /* dpyan2k.c */
 extern int dpyan2k(const char *, const REC_SEL *const);
 extern int dpyan2k_record(const int, const ANSI_NIST *);
 extern int dpyan2k_binary_record(const int, const ANSI_NIST *);
 extern int dpyan2k_tagged_record(const int, const ANSI_NIST *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_DPYAN2K_H */

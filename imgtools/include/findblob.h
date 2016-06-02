@@ -84,6 +84,10 @@ typedef struct { /* info about one run of pixels */
   unsigned char *w_on, *e_off;
 } RUN;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* findblob.c */
 extern int findblob(unsigned char *, int, int, int, int, int, int *, int *,
                     unsigned char **, int *, int *, int *, int *);
@@ -112,5 +116,9 @@ extern int findblob_stats_rw(unsigned char *, int, int, int *, int *,
 extern int findblob_stats_cl(unsigned char *, int, int, int *, int *,
                              int *, int *, int *, int *);
 extern void end_findblobs(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* !_FINDBLOB_H */

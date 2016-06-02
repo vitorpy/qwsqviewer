@@ -45,6 +45,9 @@ of the software.
 #ifndef _DILATE_H
 #define _DILATE_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern int dilate_charimage(unsigned char *, unsigned char **, const int,
                 const int);
@@ -53,5 +56,9 @@ extern char get_north8(char *, const int, const int);
 extern char get_east8(char *, const int, const int);
 extern char get_west8(char *, const int);
 extern void bubble_sort_int(int *, const int);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_DILATE_H */

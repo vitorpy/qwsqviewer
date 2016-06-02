@@ -45,6 +45,10 @@ of the software.
 #ifndef _DATA_IO_H
 #define _DATA_IO_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* dataio.c */
 extern int read_byte(unsigned char *, FILE *);
 extern int getc_byte(unsigned char *, unsigned char **, unsigned char *);
@@ -66,5 +70,9 @@ extern void write_bits(unsigned char **, const unsigned short, const short,
                  int *, unsigned char *, int *);
 extern void flush_bits(unsigned char **, int *, unsigned char *, int *);
 extern int read_ascii_file(char *, char **);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_DATA_IO_H */

@@ -75,11 +75,19 @@ of the software.
 #define JP2_IMG   6
 #define PNG_IMG   7
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* imgtype.c */
 extern int image_type(int *, unsigned char *, const int);
 extern int jpeg_type(int *, unsigned char *, const int);
 #ifdef __NBIS_JASPER__ 
 	extern int is_jp2(unsigned char *, const int);
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif /* !_IMGTYPE_H */

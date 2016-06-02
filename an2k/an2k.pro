@@ -19,6 +19,7 @@ include/an2kseg.h
 
 SOURCES += \
 src/lib/an2k/append.c \
+src/lib/an2k/select.c \
 src/lib/an2k/subst.c \
 src/lib/an2k/size.c \
 src/lib/an2k/alloc.c \

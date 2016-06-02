@@ -48,8 +48,15 @@ of the software.
 #define BIN_TOO_LOW       10
 #define LONG_LOW_BIN_RUN  5
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern void trim_histtails_contrast_boost(unsigned char *,
                                           const int, const int);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_IMGBOOST_H */

@@ -70,8 +70,16 @@ typedef struct {
 
 #define SEG_ID    21
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /***********************************************************************/
 /* SEG.C : ROUTINES */
 extern int lookup_type14_segments(SEG **, int *, RECORD *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_AN2KSEG_H */

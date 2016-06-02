@@ -64,6 +64,10 @@ of the software.
 #define BITSPERBYTE CHAR_BIT
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* bincopy.c */
 extern void binary_subimage_copy_8 (register unsigned char *, int, int,
                    register unsigned char *, int, int, int, int, int, int,
@@ -90,5 +94,9 @@ extern int binary_image_pad(unsigned char **, unsigned int, unsigned int,
                    unsigned int, unsigned int, int);
 extern int binary_image_mpad(unsigned char **, unsigned int *, unsigned int *,
                    unsigned int, unsigned int, int);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* !_BINOPS_H */

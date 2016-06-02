@@ -89,11 +89,19 @@ enum {
   TRUE=1
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /******************************************************************************/
 /* histogen.c */
 extern int process_file(const char *);
 extern int initialize_linked_list();
 extern int output_linked_list(FILE *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_HISTOGEN_H */
 

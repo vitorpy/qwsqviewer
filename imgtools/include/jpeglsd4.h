@@ -49,7 +49,15 @@ of the software.
 
 #define MAX_HUFFBITS_JPEGL_SD4 10
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern int jpegl_sd4_decode_mem(unsigned char *, const int, const int,
                  const int, const int, unsigned char *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_JPEGLSD4_H */

@@ -49,6 +49,9 @@ of the software.
  *
  */
 
+#ifndef _DPYDEPTH_H
+#define _DPYDEPTH_H
+
 #define XMGetSubImageDataDepth(_src,_x,_y,_srcw,_srch,_dst,_dstw,_dsth) \
 { \
 int _i, _dst_index, _src_index; \
@@ -76,3 +79,5 @@ while (_i-- > 0) { \
 	_src_index += _srcw; \
 } \
 }
+
+#endif

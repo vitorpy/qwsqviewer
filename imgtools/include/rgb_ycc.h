@@ -53,6 +53,10 @@ of the software.
 #define sround(x) ((int) (((x)<0) ? (x)-0.5 : (x)+0.5))
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern int rgb2ycc_mem(unsigned char **, int *, unsigned char *,
                        const int, const int, const int, const int);
 extern int rgb2ycc_intrlv_mem(unsigned char **, int *, unsigned char *,
@@ -81,5 +85,9 @@ extern void window_fill_plane(unsigned char *, const int, const int,
 extern void fill_window(const unsigned char, unsigned char *,
                        const int, const int, const int, const int);
 extern int test_evenmult_sampfctrs(int *, int *, int *, int *, const int);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_RGB_YCC_H */

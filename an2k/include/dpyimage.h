@@ -59,6 +59,10 @@ of the software.
 
 #include <dpyx.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* X-Window global references. */
 extern unsigned int dw, dh;
 extern int window_up;
@@ -106,5 +110,9 @@ extern int button_release(XEvent *, XImage *,
                  unsigned char *, int *, int *, int, 
                  const SEGMENTS *const);
 extern void button_press(XEvent *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

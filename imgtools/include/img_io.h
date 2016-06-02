@@ -59,6 +59,10 @@ of the software.
 #include <imgutil.h>
 #include <util.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* grp4comp.c */
 extern void grp4decomp(unsigned char *, int, int, int, unsigned char *, int *);
 extern void grp4comp(unsigned char *, int, int, int, unsigned char *, int *);
@@ -85,5 +89,9 @@ extern void writeihdrsubimage(char *, unsigned char *, int, int, int,
                               char *, int, int);
 extern void write_fields(char *, char **, int, IHEAD **, unsigned char **,
                          int, int);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_IMG_IO_H */

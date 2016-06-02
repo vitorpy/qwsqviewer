@@ -41,6 +41,12 @@ of the software.
 
 *******************************************************************************/
 
+#ifndef _JMORECFG_H
+#define _JMORECFG_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
  * jmorecfg.h
@@ -405,3 +411,9 @@ typedef int boolean;
 #endif
 
 #endif /* JPEG_INTERNAL_OPTIONS */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

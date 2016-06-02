@@ -51,10 +51,18 @@ of the software.
 #define MAX_CMPNTS  4
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern void parse_w_h_d_ppi(char *, char *, int *, int *, int *, int *);
 extern void parse_h_v_sampfctrs(char *, char *, int *, int *, int *);
 
 /* provided by application */
 extern void print_usage(char *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

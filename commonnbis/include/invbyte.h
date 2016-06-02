@@ -41,5 +41,17 @@ of the software.
 
 *******************************************************************************/
 
+#ifndef _INVBYTE_H
+#define _INVBYTE_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern unsigned char Inv_Byte[256];
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

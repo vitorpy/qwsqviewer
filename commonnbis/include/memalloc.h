@@ -45,6 +45,10 @@ of the software.
 #ifndef _MEMALLOC_H
 #define _MEMALLOC_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* UPDATED: 03/15/2005 by MDG */
 
 extern int malloc_char_ret(char **, const int, char *);
@@ -84,5 +88,9 @@ extern void free_dbl_flt(float **, const int);
 extern void malloc_dbl_char(char ***, const int, const int, char *);
 extern void malloc_dbl_uchar(unsigned char ***, const int, const int, char *);
 extern void malloc_dbl_flt(float ***, const int, const int, char *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_MEMALLOC_H */
