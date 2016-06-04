@@ -43,31 +43,6 @@ include/grp4deco.h \
 include/dilate.h
 
 SOURCES += \
-src/lib/image/readihdr.c \
-src/lib/image/imgdecod.c \
-src/lib/image/imgtype.c \
-src/lib/image/imageops.c \
-src/lib/image/imgutil.c \
-src/lib/image/parsargs.c \
-src/lib/image/bincopy.c \
-src/lib/image/thresh.c \
-src/lib/image/binfill.c \
-src/lib/image/imgavg.c \
-src/lib/image/intrlv.c \
-src/lib/image/binpad.c \
-src/lib/image/dilate.c \
-src/lib/image/writihdr.c \
-src/lib/image/findblob.c \
-src/lib/image/grp4comp.c \
-src/lib/image/masks.c \
-src/lib/image/imgsnip.c \
-src/lib/image/rl.c \
-src/lib/image/imgboost.c \
-src/lib/image/img_io.c \
-src/lib/image/rgb_ycc.c \
-src/lib/image/bitmasks.c \
-src/lib/image/sunrast.c \
-src/lib/image/grp4deco.c \
 src/lib/jpegl/encoder.c \
 src/lib/jpegl/decoder.c \
 src/lib/jpegl/tableio.c \
@@ -94,4 +69,29 @@ src/lib/wsq/sd14util.c \
 src/lib/wsq/huff.c \
 src/lib/wsq/util.c \
 src/lib/wsq/cropcoeff.c \
-src/lib/wsq/ppi.c
+src/lib/wsq/ppi.c \
+src/lib/image/img_io.c \
+src/lib/image/readihdr.c \
+src/lib/image/imgdecod.c \
+src/lib/image/imgtype.c \
+src/lib/image/imageops.c \
+src/lib/image/imgutil.c \
+src/lib/image/parsargs.c \
+src/lib/image/bincopy.c \
+src/lib/image/thresh.c \
+src/lib/image/binfill.c \
+src/lib/image/imgavg.c \
+src/lib/image/intrlv.c \
+src/lib/image/binpad.c \
+src/lib/image/dilate.c \
+src/lib/image/writihdr.c \
+src/lib/image/findblob.c \
+src/lib/image/grp4comp.c \
+src/lib/image/masks.c \
+src/lib/image/imgsnip.c \
+src/lib/image/rl.c \
+src/lib/image/imgboost.c \
+src/lib/image/rgb_ycc.c \
+src/lib/image/bitmasks.c \
+src/lib/image/sunrast.c \
+src/lib/image/grp4deco.c
