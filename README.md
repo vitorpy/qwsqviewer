@@ -1,19 +1,26 @@
-gwsqviewer
+qwsqviewer
 ==========
 
 Qt-based WSQ image viewer.
 
-Includes source code from NBIS. The NBIS source code is in the public
-domain.
+Author
+------
+
+Vitor Py (vitorpy@gmail.com)
 
 TODO
 ----
 
-* Breakup .pro into subdirs as .o have the same name for NBIS. Generate either multiple .a or .sos and use id -rpath for linking
+* Get it to work! ;-)
 
-Attribution
------------
+* Include options to also show minutiae from a NIST template
 
-Fingerprint image: https://en.wikipedia.org/wiki/User:Cyrillic - Creative Commons Attribution-Share Alike 3.0 Unported
-NBIS: public domain 
+* Further options to manually edit a NIST template
+
+Attributions and copyrights
+---------------------------
+
+* Fingerprint image: https://en.wikipedia.org/wiki/User:Cyrillic - Creative Commons Attribution-Share Alike 3.0 Unported
+
+* NBIS from NIST version 4.2: http://www.nist.gov/itl/iad/ig/nbis.cfm - Public Domain
 
