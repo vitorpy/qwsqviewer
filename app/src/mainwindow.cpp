@@ -1,18 +1,18 @@
-#include "inc/mainwindow.h"
-#include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QString>
+#include <QMessageBox>
+#include <cstdio>
+#include <QImage>
+
 #include "canvas.h"
 #include "utils.h"
 #include "aboutwindow.h"
-#include <QMessageBox>
-
-extern "C" {
+#include "inc/mainwindow.h"
+#include "ui_mainwindow.h"
 #include "util.h"
 #include "ihead.h"
 #include "wsq.h"
 #include "img_io.h"
-}
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -55,11 +55,16 @@ void MainWindow::open()
     unsigned char *idata;
     int ilen;
 
-    int ret = read_raw_from_filesize(file.toLocal8Bit().data(), &idata, &ilen);
-    if (ret) {
+    int ret;
+    if (ret = read_raw_from_filesize(file.toLocal8Bit().data(), &idata, &ilen)) {
         free(idata);
         QMessageBox::warning(this, tr("qwsqviewwer"), tr("failed."));
         return;
+    }
+
+    if((ret = print_comments_wsq(stdout, idata, ilen))) {
+       free(idata);
+       return;
     }
 
     unsigned char* odata;
@@ -69,7 +74,7 @@ void MainWindow::open()
       free(idata);
       QMessageBox::warning(this, tr("qwsqviewwer"), tr("failed 2."));
       return;
-   }
+    }
 
-    QMessageBox::warning(this, tr("qwsqviewwer"), file);
+    QMessageBox::warning(this, tr("qwsqviewer"), file);
 }

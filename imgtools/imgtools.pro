@@ -1,7 +1,7 @@
 TEMPLATE = lib
-CONFIG = staticlib
+CONFIG += staticlib
 
-QMAKE_LINK = $$QMAKE_LINK_C
+DEFINES += __NBISLE__
 CONFIG += object_parallel_to_source
 
 INCLUDEPATH += include ../commonnbis/include ../an2k/include
