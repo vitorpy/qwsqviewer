@@ -113,6 +113,9 @@
    </property>
   </action>
   <action name="actionZoomFit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../app.qrc">
      <normaloff>:/res/resize-both-3x.png</normaloff>:/res/resize-both-3x.png</iconset>

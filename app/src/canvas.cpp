@@ -30,7 +30,8 @@ void Canvas::zoom(double factor)
 
 void Canvas::fit()
 {
-    QScrollArea* sa = qobject_cast<QScrollArea*>(parent());
+    QObject* widget = parent();
+    QScrollArea* sa = qobject_cast<QScrollArea*>(widget);
     if (!sa)
         return;
 
