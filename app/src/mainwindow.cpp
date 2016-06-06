@@ -56,13 +56,23 @@ void MainWindow::open()
     int ilen;
 
     int ret = read_raw_from_filesize(file.toLocal8Bit().data(), &idata, &ilen);
+    if (!ret) {
+        free(idata);
+        QMessageBox::warning(this, tr("qwsqviewwer"), tr("failed."));
+        return;
+    }
 
-    /*
-     *    if((ret = wsq_decode_mem(&odata, &width, &height, &depth, &ppi,
+#if 0
+    unsigned char* odata;
+    int width, height, depth, ppi, lossyflag;
+    if((ret = wsq_decode_mem(&odata, &width, &height, &depth, &ppi,
                            &lossyflag, idata, ilen))){
       free(idata);
-      exit(ret);
-   }*/
+      //exit(ret);
+      QMessageBox::warning(this, tr("qwsqviewwer"), tr("failed 2."));
+      return;
+   }
+#endif
 
     QMessageBox::warning(this, tr("qwsqviewwer"), file);
 }
