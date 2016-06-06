@@ -68,41 +68,71 @@
    <addaction name="actionZoomOriginal"/>
   </widget>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="../app.qrc">
+     <normaloff>:/res/file-3x.png</normaloff>:/res/file-3x.png</iconset>
+   </property>
    <property name="text">
     <string>Open...</string>
    </property>
   </action>
   <action name="actionExit">
+   <property name="icon">
+    <iconset resource="../app.qrc">
+     <normaloff>:/res/x-3x.png</normaloff>:/res/x-3x.png</iconset>
+   </property>
    <property name="text">
     <string>Exit</string>
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="../app.qrc">
+     <normaloff>:/res/info-3x.png</normaloff>:/res/info-3x.png</iconset>
+   </property>
    <property name="text">
     <string>About...</string>
    </property>
   </action>
   <action name="actionZoomPlus">
+   <property name="icon">
+    <iconset resource="../app.qrc">
+     <normaloff>:/res/zoom-in-3x.png</normaloff>:/res/zoom-in-3x.png</iconset>
+   </property>
    <property name="text">
     <string>Zoom +</string>
    </property>
   </action>
   <action name="actionZoomMinus">
+   <property name="icon">
+    <iconset resource="../app.qrc">
+     <normaloff>:/res/zoom-out-3x.png</normaloff>:/res/zoom-out-3x.png</iconset>
+   </property>
    <property name="text">
     <string>Zoom -</string>
    </property>
   </action>
   <action name="actionZoomFit">
+   <property name="icon">
+    <iconset resource="../app.qrc">
+     <normaloff>:/res/resize-both-3x.png</normaloff>:/res/resize-both-3x.png</iconset>
+   </property>
    <property name="text">
     <string>Zoom Fit</string>
    </property>
   </action>
   <action name="actionZoomOriginal">
+   <property name="icon">
+    <iconset resource="../app.qrc">
+     <normaloff>:/res/reload-3x.png</normaloff>:/res/reload-3x.png</iconset>
+   </property>
    <property name="text">
     <string>Zoom Original</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../app.qrc"/>
+ </resources>
  <connections/>
 </ui>

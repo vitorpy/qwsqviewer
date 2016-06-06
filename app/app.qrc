@@ -2,4 +2,13 @@
     <qresource prefix="/img">
         <file>res/Fingerprintforcriminologystubs2.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>res/zoom-in-3x.png</file>
+        <file>res/zoom-out-3x.png</file>
+        <file>res/x-3x.png</file>
+        <file>res/info-3x.png</file>
+        <file>res/resize-both-3x.png</file>
+        <file>res/file-3x.png</file>
+        <file>res/reload-3x.png</file>
+    </qresource>
 </RCC>

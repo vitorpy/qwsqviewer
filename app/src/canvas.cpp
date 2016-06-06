@@ -5,7 +5,7 @@
 
 Canvas::Canvas(QWidget *parent) : QWidget(parent)
 {
-
+    _scale = 1.0;
 }
 
 void Canvas::setImage(const QImage &image) {
