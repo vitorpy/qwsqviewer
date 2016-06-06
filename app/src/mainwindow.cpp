@@ -62,17 +62,14 @@ void MainWindow::open()
         return;
     }
 
-#if 1
     unsigned char* odata;
     int width, height, depth, ppi, lossyflag;
     if((ret = wsq_decode_mem(&odata, &width, &height, &depth, &ppi,
                            &lossyflag, idata, ilen))){
       free(idata);
-      //exit(ret);
       QMessageBox::warning(this, tr("qwsqviewwer"), tr("failed 2."));
       return;
    }
-#endif
 
     QMessageBox::warning(this, tr("qwsqviewwer"), file);
 }
