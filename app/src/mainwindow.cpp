@@ -55,7 +55,7 @@ void MainWindow::exit()
 
 void MainWindow::open()
 {
-    QString file = QFileDialog::getOpenFileName(this);
+    QString file = QFileDialog::getOpenFileName(this, tr("qwsqviewer"), QString(), tr("Wsq images (*.wsq)"));
 
     if (file.isEmpty())
         return;
