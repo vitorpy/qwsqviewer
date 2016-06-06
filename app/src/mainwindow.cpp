@@ -58,23 +58,22 @@ void MainWindow::open()
     int ret;
     if (ret = read_raw_from_filesize(file.toLocal8Bit().data(), &idata, &ilen)) {
         free(idata);
-        QMessageBox::warning(this, tr("qwsqviewwer"), tr("failed."));
+        QMessageBox::warning(this, tr("qwsqviewer"), tr("failed."));
         return;
-    }
-
-    if((ret = print_comments_wsq(stdout, idata, ilen))) {
-       free(idata);
-       return;
     }
 
     unsigned char* odata;
     int width, height, depth, ppi, lossyflag;
-    if((ret = wsq_decode_mem(&odata, &width, &height, &depth, &ppi,
-                           &lossyflag, idata, ilen))){
-      free(idata);
-      QMessageBox::warning(this, tr("qwsqviewwer"), tr("failed 2."));
-      return;
+    if (ret = wsq_decode_mem(&odata, &width, &height, &depth, &ppi,
+                           &lossyflag, idata, ilen)) {
+        free(idata);
+        QMessageBox::warning(this, tr("qwsqviewer"), tr("failed 2."));
+        return;
     }
 
-    QMessageBox::warning(this, tr("qwsqviewer"), file);
+    QImage img(odata, width, height, QImage::Format_Grayscale8);
+    _canvas->setImage(img);
+
+    free(idata);
+    //free(odata);
 }
