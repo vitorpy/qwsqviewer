@@ -11,7 +11,7 @@ public:
     explicit Canvas(QWidget *parent = 0);
 
     const QImage& image() const { return _image; }
-    void setImage(const QImage& image) { _image = image; }
+    void setImage(const QImage& image);
 
 signals:
 

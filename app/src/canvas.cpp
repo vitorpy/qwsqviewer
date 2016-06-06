@@ -7,6 +7,12 @@ Canvas::Canvas(QWidget *parent) : QWidget(parent)
 
 }
 
+void Canvas::setImage(const QImage &image) {
+    _image = image;
+
+    resize(_image.size());
+}
+
 /*virtual*/ void Canvas::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);

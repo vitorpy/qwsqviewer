@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <cstdio>
 #include <QImage>
+#include <QScrollArea>
 
 #include "canvas.h"
 #include "utils.h"
@@ -21,7 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
     _ui->setupUi(this);
     _canvas = new Canvas(this);
 
-    setCentralWidget(_canvas);
+    QScrollArea *sa = new QScrollArea(this);
+    sa->setWidget(_canvas);
+
+    setCentralWidget(sa);
 
     CHECK(connect(_ui->actionOpen, SIGNAL(triggered(bool)), this, SLOT(open())));
     CHECK(connect(_ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(about())));
