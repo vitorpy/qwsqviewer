@@ -71,9 +71,9 @@ void MainWindow::open()
         return;
     }
 
-    QImage img(odata, width, height, QImage::Format_Grayscale8);
+    QImage img(odata, width, height, QImage::Format_Grayscale8, &free, odata);
     _canvas->setImage(img);
+    _canvas->update();
 
     free(idata);
-    //free(odata);
 }
