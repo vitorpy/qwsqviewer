@@ -56,7 +56,7 @@ void MainWindow::open()
     int ilen;
 
     int ret = read_raw_from_filesize(file.toLocal8Bit().data(), &idata, &ilen);
-    if (!ret) {
+    if (ret) {
         free(idata);
         QMessageBox::warning(this, tr("qwsqviewwer"), tr("failed."));
         return;
