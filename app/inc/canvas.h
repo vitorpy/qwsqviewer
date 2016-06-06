@@ -13,6 +13,10 @@ public:
     const QImage& image() const { return _image; }
     void setImage(const QImage& image);
 
+    void zoom(double factor);
+    void fit();
+    void original();
+
 signals:
 
 public slots:
@@ -22,6 +26,7 @@ protected:
 
 private:
     QImage _image;
+    double _scale;
 };
 
 #endif // CANVAS_H

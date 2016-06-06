@@ -20,9 +20,9 @@ MainWindow::MainWindow(QWidget *parent) :
     _ui(new Ui::MainWindow)
 {
     _ui->setupUi(this);
-    _canvas = new Canvas(this);
-
     QScrollArea *sa = new QScrollArea(this);
+    _canvas = new Canvas(sa);
+
     sa->setWidget(_canvas);
 
     setCentralWidget(sa);
@@ -30,6 +30,10 @@ MainWindow::MainWindow(QWidget *parent) :
     CHECK(connect(_ui->actionOpen, SIGNAL(triggered(bool)), this, SLOT(open())));
     CHECK(connect(_ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(about())));
     CHECK(connect(_ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(exit())));
+    CHECK(connect(_ui->actionZoomPlus, SIGNAL(triggered(bool)), this, SLOT(zoomPlus())));
+    CHECK(connect(_ui->actionZoomMinus, SIGNAL(triggered(bool)), this, SLOT(zoomMinus())));
+    CHECK(connect(_ui->actionZoomOriginal, SIGNAL(triggered(bool)), this, SLOT(zoomOriginal())));
+    CHECK(connect(_ui->actionZoomFit, SIGNAL(triggered(bool)), this, SLOT(zoomFit())));
 }
 
 MainWindow::~MainWindow()
@@ -80,4 +84,24 @@ void MainWindow::open()
     _canvas->update();
 
     free(idata);
+}
+
+void MainWindow::zoomPlus()
+{
+    _canvas->zoom(1.1);
+}
+
+void MainWindow::zoomMinus()
+{
+    _canvas->zoom(0.9);
+}
+
+void MainWindow::zoomOriginal()
+{
+    _canvas->original();
+}
+
+void MainWindow::zoomFit()
+{
+    _canvas->fit();
 }

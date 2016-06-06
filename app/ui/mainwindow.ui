@@ -37,10 +37,36 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuImage">
+    <property name="title">
+     <string>Image</string>
+    </property>
+    <addaction name="actionZoomPlus"/>
+    <addaction name="actionZoomMinus"/>
+    <addaction name="separator"/>
+    <addaction name="actionZoomFit"/>
+    <addaction name="actionZoomOriginal"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuImage"/>
    <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionZoomPlus"/>
+   <addaction name="actionZoomMinus"/>
+   <addaction name="actionZoomFit"/>
+   <addaction name="actionZoomOriginal"/>
+  </widget>
   <action name="actionOpen">
    <property name="text">
     <string>Open...</string>
@@ -54,6 +80,26 @@
   <action name="actionAbout">
    <property name="text">
     <string>About...</string>
+   </property>
+  </action>
+  <action name="actionZoomPlus">
+   <property name="text">
+    <string>Zoom +</string>
+   </property>
+  </action>
+  <action name="actionZoomMinus">
+   <property name="text">
+    <string>Zoom -</string>
+   </property>
+  </action>
+  <action name="actionZoomFit">
+   <property name="text">
+    <string>Zoom Fit</string>
+   </property>
+  </action>
+  <action name="actionZoomOriginal">
+   <property name="text">
+    <string>Zoom Original</string>
    </property>
   </action>
  </widget>

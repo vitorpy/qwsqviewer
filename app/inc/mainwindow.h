@@ -21,6 +21,10 @@ private slots:
     void about();
     void exit();
     void open();
+    void zoomPlus();
+    void zoomMinus();
+    void zoomOriginal();
+    void zoomFit();
 
 private:
     Ui::MainWindow *_ui;
