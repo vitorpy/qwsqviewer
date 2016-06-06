@@ -62,7 +62,7 @@ void MainWindow::open()
         return;
     }
 
-#if 0
+#if 1
     unsigned char* odata;
     int width, height, depth, ppi, lossyflag;
     if((ret = wsq_decode_mem(&odata, &width, &height, &depth, &ppi,

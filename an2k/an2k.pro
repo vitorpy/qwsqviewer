@@ -1,7 +1,7 @@
 TEMPLATE = lib
 CONFIG = staticlib
 
-#QMAKE_LINK = $$QMAKE_LINK_C
+QMAKE_LINK = $$QMAKE_LINK_C
 CONFIG += object_parallel_to_source
 
 INCLUDEPATH += include ../imgtools/include ../commonnbis/include
