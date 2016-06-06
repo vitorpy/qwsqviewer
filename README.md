@@ -24,3 +24,4 @@ Attributions and copyrights
 
 * NBIS from NIST version 4.2: http://www.nist.gov/itl/iad/ig/nbis.cfm - Public Domain
 
+* Icons Open Iconic: https://useiconic.com/open/ - MIT Licence
