@@ -10,7 +10,8 @@ SOURCES += \
     src/mainwindow.cpp \
     src/aboutwindow.cpp \
     src/canvas.cpp \
-    src/main.cpp
+    src/main.cpp \
+    src/an2kloader.cpp
 
 FORMS += \
     ui/mainwindow.ui \
@@ -20,7 +21,8 @@ HEADERS += \
     inc/mainwindow.h \
     inc/aboutwindow.h \
     inc/canvas.h \
-    inc/utils.h
+    inc/utils.h \
+    inc/an2kloader.h
 
 RESOURCES += \
     app.qrc

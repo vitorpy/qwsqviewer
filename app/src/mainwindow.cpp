@@ -113,6 +113,7 @@ void MainWindow::openAn2k()
     QString file = QFileDialog::getOpenFileName(this, tr("qwsqviewer"), QString(), tr("AN2K images (*.an2k)"));
 
     int ret;
+    REC_SEL *rec_sel = 0; /*TODO*/
 
     ANSI_NIST *ansi_nist;
     if ((ret = read_ANSI_NIST_file(file.toLocal8Bit().data(), &ansi_nist))){
@@ -126,8 +127,13 @@ void MainWindow::openAn2k()
        /* Set current record. */
        RECORD *record = ansi_nist->records[record_i];
 
-       if (image_record(record->type)){
-           ;
+       if (image_record(record->type) && select_ANSI_NIST_record(record, rec_sel)){
+           if((ret = dpyan2k_record(record_i, ansi_nist))){
+              free_ANSI_NIST(ansi_nist);
+              return;
+           }
+           /* Bump image displayed counter. */
+           num_images++;
        }
     }
 
