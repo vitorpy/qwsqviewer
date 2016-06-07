@@ -25,6 +25,7 @@ private slots:
     void zoomMinus();
     void zoomOriginal();
     void zoomFit();
+    void openAn2k();
 
 private:
     Ui::MainWindow *_ui;

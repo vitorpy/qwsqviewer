@@ -28,6 +28,7 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionOpenAN2K"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -73,7 +74,7 @@
      <normaloff>:/res/file-3x.png</normaloff>:/res/file-3x.png</iconset>
    </property>
    <property name="text">
-    <string>Open...</string>
+    <string>Open Image...</string>
    </property>
   </action>
   <action name="actionExit">
@@ -131,6 +132,11 @@
    </property>
    <property name="text">
     <string>Zoom Original</string>
+   </property>
+  </action>
+  <action name="actionOpenAN2K">
+   <property name="text">
+    <string>Open AN2K...</string>
    </property>
   </action>
  </widget>

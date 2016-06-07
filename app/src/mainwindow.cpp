@@ -14,6 +14,7 @@
 #include "ihead.h"
 #include "wsq.h"
 #include "img_io.h"
+#include "dpyan2k.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -34,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     CHECK(connect(_ui->actionZoomMinus, SIGNAL(triggered(bool)), this, SLOT(zoomMinus())));
     CHECK(connect(_ui->actionZoomOriginal, SIGNAL(triggered(bool)), this, SLOT(zoomOriginal())));
     CHECK(connect(_ui->actionZoomFit, SIGNAL(triggered(bool)), this, SLOT(zoomFit())));
+    CHECK(connect(_ui->actionOpenAN2K, SIGNAL(triggered(bool)), this, SLOT(openAn2k())));
 }
 
 MainWindow::~MainWindow()
@@ -64,7 +66,7 @@ void MainWindow::open()
     int ilen;
 
     int ret;
-    if (ret = read_raw_from_filesize(file.toLocal8Bit().data(), &idata, &ilen)) {
+    if ((ret = read_raw_from_filesize(file.toLocal8Bit().data(), &idata, &ilen))) {
         free(idata);
         QMessageBox::warning(this, tr("qwsqviewer"), tr("failed."));
         return;
@@ -72,8 +74,8 @@ void MainWindow::open()
 
     unsigned char* odata;
     int width, height, depth, ppi, lossyflag;
-    if (ret = wsq_decode_mem(&odata, &width, &height, &depth, &ppi,
-                           &lossyflag, idata, ilen)) {
+    if ((ret = wsq_decode_mem(&odata, &width, &height, &depth, &ppi,
+                           &lossyflag, idata, ilen))) {
         free(idata);
         QMessageBox::warning(this, tr("qwsqviewer"), tr("failed 2."));
         return;
@@ -104,4 +106,30 @@ void MainWindow::zoomOriginal()
 void MainWindow::zoomFit()
 {
     _canvas->fit();
+}
+
+void MainWindow::openAn2k()
+{
+    QString file = QFileDialog::getOpenFileName(this, tr("qwsqviewer"), QString(), tr("AN2K images (*.an2k)"));
+
+    int ret;
+
+    ANSI_NIST *ansi_nist;
+    if ((ret = read_ANSI_NIST_file(file.toLocal8Bit().data(), &ansi_nist))){
+       QMessageBox::warning(this, tr("qwsqviewer"), tr("ERROR : dpyan2k : reading ANSI_NIST file ") + file);
+       return;
+    }
+
+    /* Initialize image displayed counter. */
+    int num_images = 0;
+    for(int record_i = 1; record_i < ansi_nist->num_records; record_i++){
+       /* Set current record. */
+       RECORD *record = ansi_nist->records[record_i];
+
+       if (image_record(record->type)){
+           ;
+       }
+    }
+
+    free_ANSI_NIST(ansi_nist);
 }
