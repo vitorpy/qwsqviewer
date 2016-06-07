@@ -5,12 +5,38 @@
 
 An2kLoader::An2kLoader(QString file)
 {
-    Q_UNUSED(file);
+    _file = file;
+    nist_flag = 1;
+    iafis_flag = 0;
 }
 
 void An2kLoader::run()
 {
-    ;
+    int ret;
+    REC_SEL *rec_sel = 0; /*TODO*/
+
+    ANSI_NIST *ansi_nist;
+    if ((ret = read_ANSI_NIST_file(_file.toLocal8Bit().data(), &ansi_nist))){
+       return;
+    }
+
+    /* Initialize image displayed counter. */
+    int num_images = 0;
+    for(int record_i = 1; record_i < ansi_nist->num_records; record_i++){
+       /* Set current record. */
+       RECORD *record = ansi_nist->records[record_i];
+
+       if (image_record(record->type) && select_ANSI_NIST_record(record, rec_sel)){
+           if((ret = dpyan2k_record(record_i, ansi_nist))){
+              free_ANSI_NIST(ansi_nist);
+              return;
+           }
+           /* Bump image displayed counter. */
+           num_images++;
+       }
+    }
+
+    free_ANSI_NIST(ansi_nist);
 }
 
 /*****************************************************************
@@ -50,7 +76,7 @@ int An2kLoader::dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist
 
    /* New code - believes image attributes returned by the decode process. */
    if (verbose) {
-      fprintf(stderr, "%s:\n", filename);
+      fprintf(stderr, "%s:\n", _file.toLocal8Bit().data());
       fprintf(stderr, "\timage size: %d x %d\n", iw, ih);
       fprintf(stderr, "\tdepth: %d\n", id);
       fprintf(stderr, "\tpoints: %d\n", npts);
@@ -101,6 +127,7 @@ int An2kLoader::dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist
    fflush(stdout);
    fflush(stderr);
 
+#if 0
    switch(fork()){
       /* On ERROR ... */
       case -1:
@@ -108,9 +135,10 @@ int An2kLoader::dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist
            return(-8);
       /* Child process. */
       case 0:
+#endif
            /* Compose title for window. */
        if (sprintf(wintitle, "%s : Record %d : Type-%u",
-               filename, imgrecord_i+1, imgrecord->type)
+               _file.toLocal8Bit().data(), imgrecord_i+1, imgrecord->type)
            >= sizeof(wintitle)) {
           fprintf(stderr, "ERROR : dpyan2k_record : "
               "sprintf result overflows %lu byte buffer\n",
@@ -121,6 +149,7 @@ int An2kLoader::dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist
            dpyimagepts(wintitle, imgdata, (unsigned int)iw, (unsigned int)ih,
                (unsigned int)id, whitepix, (int)align, &done,
                        xs, ys, npts, segments);
+#if 0
            free(imgdata);
            if(npts > 0){
               free(xs);
@@ -136,6 +165,7 @@ int An2kLoader::dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist
            wy += WIN_XY_INCR;
            break;
    }
+#endif
 
    return(0);
 }
@@ -762,4 +792,9 @@ int An2kLoader::get_segmentation_data(const RECORD *const imgrecord,
 
    *segments = seg;
    return 0;
+}
+
+int An2kLoader::dpyimagepts(char *fname, unsigned char *data, unsigned int image_w, unsigned int image_h, unsigned int d, unsigned int whitepix, int align, int *done, int *xs, int *ys, int npts, const SEGMENTS * const segs)
+{
+    ;
 }

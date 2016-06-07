@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <QImage>
 #include <QScrollArea>
+#include <QThreadPool>
 
 #include "canvas.h"
 #include "utils.h"
@@ -14,7 +15,7 @@
 #include "ihead.h"
 #include "wsq.h"
 #include "img_io.h"
-#include "dpyan2k.h"
+#include "an2kloader.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -110,32 +111,14 @@ void MainWindow::zoomFit()
 
 void MainWindow::openAn2k()
 {
-    QString file = QFileDialog::getOpenFileName(this, tr("qwsqviewer"), QString(), tr("AN2K images (*.an2k)"));
+    QString file = QFileDialog::getOpenFileName(this, tr("qwsqviewer"), QString(), tr("AN2K images (*.an2)"));
 
-    int ret;
-    REC_SEL *rec_sel = 0; /*TODO*/
+    if (file.isEmpty())
+        return;
 
-    ANSI_NIST *ansi_nist;
-    if ((ret = read_ANSI_NIST_file(file.toLocal8Bit().data(), &ansi_nist))){
-       QMessageBox::warning(this, tr("qwsqviewer"), tr("ERROR : dpyan2k : reading ANSI_NIST file ") + file);
-       return;
-    }
+    An2kLoader loader(file);
 
-    /* Initialize image displayed counter. */
-    int num_images = 0;
-    for(int record_i = 1; record_i < ansi_nist->num_records; record_i++){
-       /* Set current record. */
-       RECORD *record = ansi_nist->records[record_i];
-
-       if (image_record(record->type) && select_ANSI_NIST_record(record, rec_sel)){
-           if((ret = dpyan2k_record(record_i, ansi_nist))){
-              free_ANSI_NIST(ansi_nist);
-              return;
-           }
-           /* Bump image displayed counter. */
-           num_images++;
-       }
-    }
-
-    free_ANSI_NIST(ansi_nist);
+    loader.setAutoDelete(false);
+    QThreadPool *threadPool = QThreadPool::globalInstance();
+    threadPool->start(&loader);
 }

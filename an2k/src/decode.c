@@ -549,6 +549,7 @@ int decode_tagged_field_image(unsigned char **odata,
                               idata1, ilen1)) != 0)
          return(ret);
    }
+#if 0
    /* If JPEGB compressed ... */
    else if(strcmp(img_comp, COMP_JPEGB) == 0){
       if((ret = jpegb_decode_mem(&idata2, &iw2, &ih2, &id2, &ppi, &lossyflag,
@@ -573,6 +574,8 @@ int decode_tagged_field_image(unsigned char **odata,
          ilen2 = ilen1;
       }
    }
+#endif
+#if 0
    /* If JPEGL compressed ... */
    else if(strcmp(img_comp, COMP_JPEGL) == 0){
       if((ret = jpegl_decode_mem(&img_dat, &lossyflag, idata1, ilen1)) != 0)
@@ -606,7 +609,8 @@ int decode_tagged_field_image(unsigned char **odata,
       }
       free_IMG_DAT(img_dat, FREE_IMAGE);
    }
-#ifdef __NBIS_JASPER__
+#endif
+#if 0 /*__NBIS_JASPER__*/
    /* If JPEG2K compress ... */
    else if((strcmp(img_comp, COMP_JPEG2K) == 0) || 
            (strcmp(img_comp, COMP_JPEG2KL) == 0)){
@@ -641,7 +645,7 @@ int decode_tagged_field_image(unsigned char **odata,
       }
    }
 #endif
-#ifdef __NBIS_OPENJPEG__
+#if 0 /*__NBIS_OPENJPEG__*/
    /* If JPEG2K compress ... */
    else if((strcmp(img_comp, COMP_JPEG2K) == 0) ||
            (strcmp(img_comp, COMP_JPEG2KL) == 0)){
@@ -676,7 +680,7 @@ int decode_tagged_field_image(unsigned char **odata,
       }
    }
 #endif
-#ifdef __NBIS_PNG__
+#if 0 /*__NBIS_PNG__*/
    /* If PNG compressed ... */
    else if(strcmp(img_comp, COMP_PNG) == 0){
       if((ret = png_decode_mem(&img_dat, &lossyflag, idata1, ilen1)) != 0)

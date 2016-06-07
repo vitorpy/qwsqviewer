@@ -11,6 +11,10 @@ public:
 
     virtual void run();
 private:
+    QString _file;
+    int nist_flag;
+    int iafis_flag;
+
     int dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist);
     int get_pix_per_mm(float *ohpix_per_mm, float *ovpix_per_mm, const int imgrecord_i, const ANSI_NIST *ansi_nist);
     int find_matching_minutiae(RECORD **ominrecord, int *ominrecord_i,
@@ -29,6 +33,11 @@ private:
     int is_COF_zero(FIELD *coffield);
     int get_segmentation_data(const RECORD *const imgrecord,
                      SEGMENTS **segments);
+    int dpyimagepts(char *fname, unsigned char *data,
+             unsigned int image_w, unsigned int image_h,
+                     unsigned int d, unsigned int whitepix, int align, int *done,
+             int *xs, int *ys, int npts, const SEGMENTS *const segs);
+
 };
 
 #endif // AN2KLOADER_H
