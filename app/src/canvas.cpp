@@ -57,6 +57,13 @@ void Canvas::original()
     resize(_image.size());
 }
 
+void Canvas::addMinutiae(Minutiae m)
+{
+    _mutex.lock();
+    _minutiae.append(m);
+    _mutex.unlock();
+}
+
 /*virtual*/ void Canvas::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
@@ -67,4 +74,13 @@ void Canvas::original()
     QRect target(0, 0, _image.width() * _scale, _image.height() * _scale);
 
     painter.drawImage(target, _image, source);
+
+    if (!_mutex.tryLock(10))
+        return;
+
+    foreach (Minutiae m, _minutiae) {
+        m.draw(&painter);
+    }
+
+    _mutex.unlock();
 }

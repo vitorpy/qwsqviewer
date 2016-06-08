@@ -3,6 +3,10 @@
 
 #include <QImage>
 #include <QWidget>
+#include <QList>
+#include <QMutex>
+
+#include "minutiae.h"
 
 class Canvas : public QWidget
 {
@@ -17,6 +21,8 @@ public:
     void fit();
     void original();
 
+    void addMinutiae(Minutiae m);
+
 signals:
 
 public slots:
@@ -27,6 +33,8 @@ protected:
 private:
     QImage _image;
     double _scale;
+    QMutex _mutex;
+    QList<Minutiae> _minutiae;
 };
 
 #endif // CANVAS_H
