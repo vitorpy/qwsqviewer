@@ -116,7 +116,7 @@ void MainWindow::openAn2k()
     if (file.isEmpty())
         return;
 
-    An2kLoader loader(file);
+    An2kLoader loader(file, _canvas);
 
     loader.setAutoDelete(false);
     QThreadPool *threadPool = QThreadPool::globalInstance();

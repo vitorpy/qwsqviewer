@@ -20,6 +20,7 @@ private:
     double _x;
     double _y;
     MinutiaeType _type;
+    double _angle;
 };
 
 #endif // MINUTIAE_H

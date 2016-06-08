@@ -3,14 +3,16 @@
 
 #include <QRunnable>
 #include "dpyan2k.h"
+class Canvas;
 
 class An2kLoader : public QRunnable
 {
 public:
-    An2kLoader(QString file);
+    An2kLoader(QString file, Canvas* canvas);
 
     virtual void run();
 private:
+    Canvas* _canvas;
     QString _file;
     int nist_flag;
     int iafis_flag;

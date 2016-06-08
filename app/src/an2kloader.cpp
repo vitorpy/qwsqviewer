@@ -3,8 +3,9 @@
 #include "dpyan2k.h"
 #include "defs.h"
 
-An2kLoader::An2kLoader(QString file)
+An2kLoader::An2kLoader(QString file, Canvas* canvas)
 {
+    _canvas = canvas;
     _file = file;
     nist_flag = 1;
     iafis_flag = 0;
@@ -796,5 +797,5 @@ int An2kLoader::get_segmentation_data(const RECORD *const imgrecord,
 
 int An2kLoader::dpyimagepts(char *fname, unsigned char *data, unsigned int image_w, unsigned int image_h, unsigned int d, unsigned int whitepix, int align, int *done, int *xs, int *ys, int npts, const SEGMENTS * const segs)
 {
-    ;
+    /* Open a new MainWindow, show the image, add the minutiae */
 }
