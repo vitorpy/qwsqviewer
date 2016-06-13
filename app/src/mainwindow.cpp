@@ -25,6 +25,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QScrollArea *sa = new QScrollArea(this);
     _canvas = new Canvas(sa);
 
+    _loader = new An2kLoader(_canvas);
+    _loader->setAutoDelete(false);
+
     sa->setWidget(_canvas);
 
     setCentralWidget(sa);
@@ -116,9 +119,8 @@ void MainWindow::openAn2k()
     if (file.isEmpty())
         return;
 
-    An2kLoader loader(file, _canvas);
+    _loader->setFile(file);
 
-    loader.setAutoDelete(false);
     QThreadPool *threadPool = QThreadPool::globalInstance();
-    threadPool->start(&loader);
+    threadPool->start(_loader);
 }

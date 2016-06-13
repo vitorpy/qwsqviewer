@@ -2,7 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+//#include "an2kloader.h"
 
+class An2kLoader;
 class Canvas;
 
 namespace Ui {
@@ -30,6 +32,7 @@ private slots:
 private:
     Ui::MainWindow *_ui;
     Canvas* _canvas;
+    An2kLoader* _loader;
 };
 
 #endif // MAINWINDOW_H

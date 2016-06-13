@@ -3,16 +3,19 @@
 #include "dpyan2k.h"
 #include "defs.h"
 
-An2kLoader::An2kLoader(QString file, Canvas* canvas)
+An2kLoader::An2kLoader(Canvas* canvas)
 {
     _canvas = canvas;
-    _file = file;
+    //_file = file;
     nist_flag = 1;
     iafis_flag = 0;
 }
 
 void An2kLoader::run()
 {
+    if (_file.isEmpty() || !_canvas)
+        return;
+
     int ret;
     REC_SEL *rec_sel = 0; /*TODO*/
 

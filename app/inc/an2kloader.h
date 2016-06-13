@@ -8,7 +8,13 @@ class Canvas;
 class An2kLoader : public QRunnable
 {
 public:
-    An2kLoader(QString file, Canvas* canvas);
+    An2kLoader(Canvas* canvas = 0);
+
+    const QString& file() { return _file; } const
+    void setFile(const QString& file) { _file = file; }
+
+    Canvas* canvas() { return _canvas; } const
+    void setCanvas(Canvas* canvas) { _canvas = canvas; }
 
     virtual void run();
 private:
