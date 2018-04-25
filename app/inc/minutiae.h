@@ -12,7 +12,7 @@ public:
         Unknown
     };
 
-    Minutiae();
+    Minutiae(int x, int y);
 
     void draw(QPainter* painter);
 

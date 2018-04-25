@@ -2,7 +2,7 @@
 
 #include <QtGlobal>
 
-Minutiae::Minutiae()
+Minutiae::Minutiae(int x, int y) : _x(x), _y(y)
 {
 
 }
