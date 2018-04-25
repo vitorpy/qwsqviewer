@@ -69,6 +69,6 @@ struct png_mem_io_struct {
 void png_mem_read_data(png_structp, png_bytep, png_size_t);
 int png_decode_mem(IMG_DAT **, int *, unsigned char *, const int);
 int read_png_file(char *, IMG_DAT **);
-int get_raw_image(png_bytep *, png_info *,  IMG_DAT **);
+int get_raw_image(png_bytep *, png_structp, png_info *,  IMG_DAT **);
 
 #endif /* !_PNG_DEC_H */ 

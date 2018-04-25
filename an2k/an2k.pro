@@ -4,7 +4,7 @@ CONFIG += staticlib
 DEFINES += __NBISLE__
 CONFIG += object_parallel_to_source
 
-INCLUDEPATH += include ../imgtools/include ../commonnbis/include
+INCLUDEPATH += include ../imgtools/include ../commonnbis/include  /usr/local/Cellar/libpng/1.6.34/include/  /usr/local/Cellar/jpeg/9b/include/
 
 HEADERS += \
     include/histogen.h \

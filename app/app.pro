@@ -3,7 +3,7 @@ QT += widgets
 TARGET = qwsqviewer
 TEMPLATE = app
 DEPENDPATH += src inc
-INCLUDEPATH += inc ../imgtools/include ../commonnbis/include ../an2k/include
+INCLUDEPATH += inc ../imgtools/include ../commonnbis/include ../an2k/include /usr/local/Cellar/jpeg/9b/include/
 LIBS += ../an2k/liban2k.a ../imgtools/libimgtools.a ../commonnbis/libcommonnbis.a
 
 SOURCES += \

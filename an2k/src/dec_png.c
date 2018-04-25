@@ -132,33 +132,33 @@ static int read_png_stream(png_structp png_ptr, png_infop info_ptr,
       return (-6);
    }
 
-   row_pointers = (png_bytep*) malloc(sizeof(png_bytep) * info_ptr->height);
+   row_pointers = (png_bytep*) malloc(sizeof(png_bytep) * png_get_image_height(png_ptr, info_ptr));
    if (row_pointers == NULL) {
       fprintf(stderr, "ERROR : read_png_stream : "
 	      "malloc %u row_pointers (%lu bytes)\n",
-	      (unsigned int)info_ptr->height,
-	      info_ptr->height * sizeof(png_bytep));
+          (unsigned int)png_get_image_height(png_ptr, info_ptr),
+          png_get_image_height(png_ptr, info_ptr) * sizeof(png_bytep));
       return (-8);
    }
 
-   for (y=0; y<(int)info_ptr->height; y++) {
-      row_pointers[y] = (png_byte*) malloc((size_t)info_ptr->rowbytes);
+   for (y=0; y<(int)png_get_image_height(png_ptr, info_ptr); y++) {
+      row_pointers[y] = (png_byte*) malloc((size_t)png_get_rowbytes(png_ptr, info_ptr));
       if (row_pointers[y] == NULL) {
 	 fprintf(stderr, "ERROR : read_png_stream : "
 		 "malloc row %d (%u bytes)\n",
-		 y, (unsigned int)info_ptr->rowbytes);
+         y, (unsigned int)png_get_rowbytes(png_ptr, info_ptr));
 	 return (-9);
       }
    }
 
    png_read_image(png_ptr, row_pointers);
 
-   if (get_raw_image(row_pointers, info_ptr, &img_dat) != 0)
+   if (get_raw_image(row_pointers, png_ptr, info_ptr, &img_dat) != 0)
       ret = -7;	    /* report the error after the row pointers are freed */
    else
       ret = 0;
 
-   for (y=0; y<(int)info_ptr->height; y++)
+   for (y=0; y<(int)png_get_image_height(png_ptr, info_ptr); y++)
       free(row_pointers[y]);
    free(row_pointers);
 
@@ -301,7 +301,7 @@ int read_png_file(char *filename, IMG_DAT **oimg_dat)
    return ret;
 }
 
-int get_raw_image(png_bytep *row_pointers, png_info *info_ptr, 
+int get_raw_image(png_bytep *row_pointers, png_structp png_ptr, png_info *info_ptr,
                   IMG_DAT **oimg_dat)
 {
    IMG_DAT *img_dat;
@@ -320,16 +320,16 @@ int get_raw_image(png_bytep *row_pointers, png_info *info_ptr,
    }
 
    /* Initialize img_dat info */
-   img_dat->max_width = info_ptr->width;
-   img_dat->max_height = info_ptr->height;
+   img_dat->max_width = png_get_image_width(png_ptr, info_ptr);
+   img_dat->max_height = png_get_image_height(png_ptr, info_ptr);
 
-   if (info_ptr->channels == 4){
-      img_dat->pix_depth = 8 * (info_ptr->channels - 1);
-      img_dat->n_cmpnts = info_ptr->channels - 1;
+   if (png_get_channels(png_ptr, info_ptr) == 4){
+      img_dat->pix_depth = 8 * (png_get_channels(png_ptr, info_ptr) - 1);
+      img_dat->n_cmpnts = png_get_channels(png_ptr, info_ptr) - 1;
    }
    else{
-      img_dat->pix_depth = 8 * info_ptr->channels;
-      img_dat->n_cmpnts = info_ptr->channels;
+      img_dat->pix_depth = 8 * png_get_channels(png_ptr, info_ptr);
+      img_dat->n_cmpnts = png_get_channels(png_ptr, info_ptr);
    }
 
    img_dat->ppi = -1;
@@ -373,11 +373,11 @@ int get_raw_image(png_bytep *row_pointers, png_info *info_ptr,
    }
 
    /* Put the image raw pixels to image data sturcture component plans. */
-   pixel_d = info_ptr->channels;
+   pixel_d = png_get_channels(png_ptr, info_ptr);
    index = 0;
-   for(y = 0; y < info_ptr->height; y++) {
+   for(y = 0; y < png_get_image_height(png_ptr, info_ptr); y++) {
       png_byte* row = row_pointers[y];
-      for(x = 0; x < info_ptr->width; x++) {
+      for(x = 0; x < png_get_image_width(png_ptr, info_ptr); x++) {
          png_byte* ptr = &(row[x * pixel_d]);
          for(i = 0; i < img_dat->n_cmpnts; i++){
             *(img_dat->image[i]+index) = ptr[i];

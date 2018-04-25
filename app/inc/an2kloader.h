@@ -2,7 +2,9 @@
 #define AN2KLOADER_H
 
 #include <QRunnable>
-#include "dpyan2k.h"
+#include <an2k.h>
+//#include <dpyimage.h>
+
 class Canvas;
 
 class An2kLoader : public QRunnable

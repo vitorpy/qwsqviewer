@@ -4,7 +4,7 @@ CONFIG += staticlib
 DEFINES += __NBISLE__
 CONFIG += object_parallel_to_source
 
-INCLUDEPATH += include ../commonnbis/include ../an2k/include
+INCLUDEPATH += include ../commonnbis/include ../an2k/include /usr/local/Cellar/jpeg/9b/include/ /usr/local/Cellar/libpng/1.6.34/include/
 
 HEADERS += \
     include/jpegb.h \

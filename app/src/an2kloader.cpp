@@ -1,7 +1,8 @@
 #include <QString>
 #include "inc/an2kloader.h"
-#include "dpyan2k.h"
+//#include "dpyan2k.h"
 #include "defs.h"
+#include <sys/param.h>
 
 An2kLoader::An2kLoader(Canvas* canvas)
 {
@@ -79,12 +80,12 @@ int An2kLoader::dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist
       return(ret);
 
    /* New code - believes image attributes returned by the decode process. */
-   if (verbose) {
+#if 0
       fprintf(stderr, "%s:\n", _file.toLocal8Bit().data());
       fprintf(stderr, "\timage size: %d x %d\n", iw, ih);
       fprintf(stderr, "\tdepth: %d\n", id);
       fprintf(stderr, "\tpoints: %d\n", npts);
-   }
+#endif
 
    if(id == 1)
       whitepix = 0;
