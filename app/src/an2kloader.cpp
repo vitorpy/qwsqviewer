@@ -4,6 +4,7 @@
 #include "canvas.h"
 #include "inc/an2kloader.h"
 #include "defs.h"
+#include "utils.h"
 
 An2kLoader::An2kLoader(Canvas* canvas)
 {
@@ -61,7 +62,7 @@ int An2kLoader::dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist
     double ppmm;
     unsigned int whitepix = 0, align;
     int done = 0;
-    char wintitle[2 * MAXPATHLEN];
+    /*char wintitle[2 * MAXPATHLEN];*/
     int *xs, *ys, npts;
     SEGMENTS *segments;
 
@@ -82,10 +83,10 @@ int An2kLoader::dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist
 
     /* New code - believes image attributes returned by the decode process. */
 #if 0
-    fprintf(stderr, "%s:\n", _file.toLocal8Bit().data());
-    fprintf(stderr, "\timage size: %d x %d\n", iw, ih);
-    fprintf(stderr, "\tdepth: %d\n", id);
-    fprintf(stderr, "\tpoints: %d\n", npts);
+    DEBUG_PRINT("%s:\n", _file.toLocal8Bit().data());
+    DEBUG_PRINT("\timage size: %d x %d\n", iw, ih);
+    DEBUG_PRINT("\tdepth: %d\n", id);
+    DEBUG_PRINT("\tpoints: %d\n", npts);
 #endif
 
     if(id == 1)
@@ -93,7 +94,7 @@ int An2kLoader::dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist
     else if(id == 8 || id == 24)
         whitepix = 255;
     else {
-        fprintf(stderr, "ERROR : dpyan2k_record : "
+        DEBUG_PRINT("ERROR : dpyan2k_record : "
                 "image in record index [%d] [Type-%u] has depth %d != 1 or 8\n",
                 imgrecord_i+1, imgrecord->type, id);
         return(-5);
@@ -137,22 +138,23 @@ int An2kLoader::dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist
     switch(fork()) {
     /* On ERROR ... */
     case -1:
-        fprintf(stderr, "ERROR : dpyan2k_record : fork failed\n");
+        DEBUG_PRINT("ERROR : dpyan2k_record : fork failed\n");
         return(-8);
     /* Child process. */
     case 0:
-#endif
+
         /* Compose title for window. */
         if (sprintf(wintitle, "%s : Record %d : Type-%u",
                     _file.toLocal8Bit().data(), imgrecord_i+1, imgrecord->type)
                 >= sizeof(wintitle)) {
-            fprintf(stderr, "ERROR : dpyan2k_record : "
+            DEBUG_PRINT("ERROR : dpyan2k_record : "
                     "sprintf result overflows %lu byte buffer\n",
                     (unsigned long)sizeof(wintitle));
             return(-81);
         }
+#endif
         /* Display the image record's contents. */
-        dpyimagepts(wintitle, imgdata, (unsigned int)iw, (unsigned int)ih,
+        dpyimagepts(NULL, imgdata, (unsigned int)iw, (unsigned int)ih,
                     (unsigned int)id, whitepix, (int)align, &done,
                     xs, ys, npts, segments);
 #if 0
@@ -162,7 +164,7 @@ int An2kLoader::dpyan2k_record(const int imgrecord_i, const ANSI_NIST *ansi_nist
             free(ys);
         }
         if(verbose)
-            fprintf(stderr, "Child: %s exiting\n", wintitle);
+            DEBUG_PRINT("Child: %s exiting\n", wintitle);
         _exit(0);
     /* Parent process. */
     default:
@@ -195,7 +197,7 @@ int An2kLoader::get_pix_per_mm(float *ohpix_per_mm, float *ovpix_per_mm,
         /* Get pix/mm from NTR Type-1.012 field. */
         if(!lookup_ANSI_NIST_field(&field, &field_i, NTR_ID,
                                    ansi_nist->records[0])) {
-            fprintf(stderr, "ERROR : get_pix_per_mm : "
+            DEBUG_PRINT("ERROR : get_pix_per_mm : "
                     "NTR field [Type-1.%03d] not found\n", NTR_ID);
             return(-2);
         }
@@ -206,14 +208,14 @@ int An2kLoader::get_pix_per_mm(float *ohpix_per_mm, float *ovpix_per_mm,
         hpix_per_mm =
             (float)strtod((char *)field->subfields[0]->items[0]->value, &nep);
         if (errno) {
-            fprintf(stderr, "ERROR : get_pix_per_mm : "
+            DEBUG_PRINT("ERROR : get_pix_per_mm : "
                     "converting NTR value '%s' to floating point: %s.\n",
                     (char *)field->subfields[0]->items[0]->value, strerror(errno));
             return(-23);
 
         } else if (nep == (char *)field->subfields[0]->items[0]->value
                    || *nep != 0) {
-            fprintf(stderr, "ERROR : gep_pix_per_mm : "
+            DEBUG_PRINT("ERROR : gep_pix_per_mm : "
                     "NTR value '%s' is not a floating point number.\n",
                     (char *)field->subfields[0]->items[0]->value);
             return(-24);
@@ -223,7 +225,7 @@ int An2kLoader::get_pix_per_mm(float *ohpix_per_mm, float *ovpix_per_mm,
     else if(tagged_image_record(imgrecord->type)) {
         /* Get SLC field (ID=008) in tagged image record. */
         if(!lookup_ANSI_NIST_field(&field, &field_i, SLC_ID, imgrecord)) {
-            fprintf(stderr, "ERROR : get_pix_per_mm : "
+            DEBUG_PRINT("ERROR : get_pix_per_mm : "
                     "SLC field [Type-%u.%03d] not found\n",
                     imgrecord->type, SLC_ID);
             return(-3);
@@ -231,7 +233,7 @@ int An2kLoader::get_pix_per_mm(float *ohpix_per_mm, float *ovpix_per_mm,
         slc = (int)strtol((char *)field->subfields[0]->items[0]->value, &nep, 10);
         if (nep == (char *)field->subfields[0]->items[0]->value
                 || *nep != '\0') {
-            fprintf(stderr, "ERROR : get_pix_per_mm : "
+            DEBUG_PRINT("ERROR : get_pix_per_mm : "
                     "SLC field [Type-%u.%03d] : invalid integer value '%s'\n",
                     imgrecord->type, SLC_ID,
                     (char *)field->subfields[0]->items[0]->value);
@@ -239,7 +241,7 @@ int An2kLoader::get_pix_per_mm(float *ohpix_per_mm, float *ovpix_per_mm,
         }
         /* If not scale specified ... then, can't plot minutiae. */
         if(slc == 0) {
-            fprintf(stderr, "WARNING : get_pix_per_mm : "
+            DEBUG_PRINT("WARNING : get_pix_per_mm : "
                     "SLC field [Type-%u.%03d] = 0, "
                     "so scanning frequency not available\n",
                     imgrecord->type, SLC_ID);
@@ -248,7 +250,7 @@ int An2kLoader::get_pix_per_mm(float *ohpix_per_mm, float *ovpix_per_mm,
 
         /* Get HPS field in tagged image record. */
         if(!lookup_ANSI_NIST_field(&field, &field_i, HPS_ID, imgrecord)) {
-            fprintf(stderr, "ERROR : get_pix_per_mm : "
+            DEBUG_PRINT("ERROR : get_pix_per_mm : "
                     "HPS field [Type-%u.%03d] not found\n",
                     imgrecord->type, HPS_ID);
             return(-4);
@@ -256,7 +258,7 @@ int An2kLoader::get_pix_per_mm(float *ohpix_per_mm, float *ovpix_per_mm,
         hps = (int)strtol((char *)field->subfields[0]->items[0]->value, &nep, 10);
         if (nep == (char *)field->subfields[0]->items[0]->value
                 || *nep != '\0') {
-            fprintf(stderr, "ERROR : get_pix_per_mm : "
+            DEBUG_PRINT("ERROR : get_pix_per_mm : "
                     "HPS field [Type-%u.%03d] : invalid integer value '%s'\n",
                     imgrecord->type, HPS_ID,
                     (char *)field->subfields[0]->items[0]->value);
@@ -265,7 +267,7 @@ int An2kLoader::get_pix_per_mm(float *ohpix_per_mm, float *ovpix_per_mm,
 
         /* Get VPS field in tagged image record. */
         if(!lookup_ANSI_NIST_field(&field, &field_i, VPS_ID, imgrecord)) {
-            fprintf(stderr, "ERROR : get_pix_per_mm : "
+            DEBUG_PRINT("ERROR : get_pix_per_mm : "
                     "VPS field [Type-%u.%03d] not found\n",
                     imgrecord->type, VPS_ID);
             return(-5);
@@ -273,7 +275,7 @@ int An2kLoader::get_pix_per_mm(float *ohpix_per_mm, float *ovpix_per_mm,
         vps = (int)strtol((char *)field->subfields[0]->items[0]->value, &nep, 10);
         if (nep == (char *)field->subfields[0]->items[0]->value
                 || *nep != '\0') {
-            fprintf(stderr, "ERROR : get_pix_per_mm : "
+            DEBUG_PRINT("ERROR : get_pix_per_mm : "
                     "VPS field [Type-%u.%03d] : invalid integer value '%s'\n",
                     imgrecord->type, VPS_ID,
                     (char *)field->subfields[0]->items[0]->value);
@@ -293,16 +295,16 @@ int An2kLoader::get_pix_per_mm(float *ohpix_per_mm, float *ovpix_per_mm,
             vpix_per_mm = vps / 10.0;
         }
         else {
-            fprintf(stderr, "ERROR : get_pix_per_mm : SLC field ");
-            fprintf(stderr, "[Type-%u.%03d] has illegal value, ",
+            DEBUG_PRINT("ERROR : get_pix_per_mm : SLC field ");
+            DEBUG_PRINT("[Type-%u.%03d] has illegal value, ",
                     imgrecord->type, SLC_ID);
-            fprintf(stderr, "%d != {0,1,2}\n", slc);
+            DEBUG_PRINT("%d != {0,1,2}\n", slc);
             return(-6);
         }
     }
     else {
-        fprintf(stderr, "ERROR : get_pix_per_mm : ");
-        fprintf(stderr, "record Type-%u not supported\n",
+        DEBUG_PRINT("ERROR : get_pix_per_mm : ");
+        DEBUG_PRINT("record Type-%u not supported\n",
                 imgrecord->type);
         return(-7);
     }
@@ -328,14 +330,14 @@ int An2kLoader::find_matching_minutiae(RECORD **ominrecord, int *ominrecord_i,
 
     /* Get image record's IDC. */
     if(imgrecord->fields[IDC_ID-1]->field_int != IDC_ID) {
-        fprintf(stderr, "ERROR : find_matching_minutiae : "
+        DEBUG_PRINT("ERROR : find_matching_minutiae : "
                 "IDC field [Type-%u.%03d] not found\n", imgrecord->type, IDC_ID);
         return(-2);
     }
     valstr = (char *)imgrecord->fields[IDC_ID-1]->subfields[0]->items[0]->value;
     img_idc = (int)strtol(valstr, &nep, 10);
     if (nep == valstr || *nep != '\0') {
-        fprintf(stderr, "ERROR : find_matching_minutiae : "
+        DEBUG_PRINT("ERROR : find_matching_minutiae : "
                 "IDC field [Type-%u.%03d] : invalid integer value '%s'\n",
                 imgrecord->type, IDC_ID, valstr);
         return(-23);
@@ -349,7 +351,7 @@ int An2kLoader::find_matching_minutiae(RECORD **ominrecord, int *ominrecord_i,
             if(record->type == TYPE_9_ID) {
                 /* Get Type-9 record's IDC. */
                 if(record->fields[IDC_ID-1]->field_int != IDC_ID) {
-                    fprintf(stderr, "ERROR : find_matching_minutiae : "
+                    DEBUG_PRINT("ERROR : find_matching_minutiae : "
                             "IDC field [Type-%u.%03d] not found\n",
                             record->type, IDC_ID);
                     return(-3);
@@ -358,7 +360,7 @@ int An2kLoader::find_matching_minutiae(RECORD **ominrecord, int *ominrecord_i,
                     (char *)record->fields[IDC_ID-1]->subfields[0]->items[0]->value;
                 t9_idc = (int)strtol(valstr, &nep, 10);
                 if (nep == valstr || *nep != '\0') {
-                    fprintf(stderr, "ERROR : find_matching_minutiae : "
+                    DEBUG_PRINT("ERROR : find_matching_minutiae : "
                             "IDC field [Type-%u.%03d] : invalid integer value '%s'.\n",
                             record->type, IDC_ID, valstr);
                     return(-34);
@@ -398,8 +400,8 @@ int An2kLoader::get_minutiae_pixel_coords(int **oxs, int **oys, int *onpts,
             return(ret);
     }
     else {
-        fprintf(stderr, "ERROR : get_minutiae_pixel_coords : ");
-        fprintf(stderr, "neither NIST or IAFIS field flags set\n");
+        DEBUG_PRINT("ERROR : get_minutiae_pixel_coords : ");
+        DEBUG_PRINT("neither NIST or IAFIS field flags set\n");
         return(-2);
     }
 
@@ -424,7 +426,7 @@ int An2kLoader::get_nist_minutiae_pixel_coords(int **oxs, int **oys, int *onpts,
 
     /* Find minutiae count field ... */
     if(!lookup_ANSI_NIST_field(&field, &field_i, MIN_ID, minrecord)) {
-        fprintf(stderr, "ERROR : get_nist_minutiae_pixel_coords : "
+        DEBUG_PRINT("ERROR : get_nist_minutiae_pixel_coords : "
                 "MIN field in record index [%d] [Type-%u.%03d] not found\n",
                 minrecord_i+1, minrecord->type, MIN_ID);
         return(-2);
@@ -432,7 +434,7 @@ int An2kLoader::get_nist_minutiae_pixel_coords(int **oxs, int **oys, int *onpts,
     valstr = (char *)field->subfields[0]->items[0]->value;
     npts = (int)strtol(valstr, &nep, 10);
     if (nep == valstr || *nep != '\0') {
-        fprintf(stderr, "ERROR : get_nist_minutiae_pixel_coord : "
+        DEBUG_PRINT("ERROR : get_nist_minutiae_pixel_coord : "
                 "IDC field in record index [%d] [Type-%u.%03d] : "
                 "invalid integer value '%s'.\n",
                 minrecord_i, minrecord->type, MIN_ID, valstr);
@@ -464,20 +466,20 @@ int An2kLoader::get_nist_minutiae_pixel_coords(int **oxs, int **oys, int *onpts,
     }
     /* Find minutiae attributes field ... */
     if(!lookup_ANSI_NIST_field(&field, &field_i, MRC_ID, minrecord)) {
-        fprintf(stderr, "ERROR : get_nist_minutiae_pixel_coords : ");
-        fprintf(stderr, "MRC field in record index [%d] [Type-%u.%03d] ",
+        DEBUG_PRINT("ERROR : get_nist_minutiae_pixel_coords : ");
+        DEBUG_PRINT("MRC field in record index [%d] [Type-%u.%03d] ",
                 minrecord_i+1, minrecord->type, MRC_ID);
-        fprintf(stderr, "not found\n");
+        DEBUG_PRINT("not found\n");
         free(xs);
         free(ys);
         return(-5);
     }
     /* If wrong number of subfields ... */
     if(field->num_subfields != npts) {
-        fprintf(stderr, "ERROR : get_nist_minutiae_pixel_coords : ");
-        fprintf(stderr, "number of subfields %d != %d ",
+        DEBUG_PRINT("ERROR : get_nist_minutiae_pixel_coords : ");
+        DEBUG_PRINT("number of subfields %d != %d ",
                 field->num_subfields, npts);
-        fprintf(stderr, "in MRC field index [%d.%d] [Type-%u.%03d]\n",
+        DEBUG_PRINT("in MRC field index [%d.%d] [Type-%u.%03d]\n",
                 minrecord_i+1, field_i+1, minrecord->type, MRC_ID);
         free(xs);
         free(ys);
@@ -490,7 +492,7 @@ int An2kLoader::get_nist_minutiae_pixel_coords(int **oxs, int **oys, int *onpts,
         item = field->subfields[subfield_i]->items[1];
         /* If location/direction wrong length ... */
         if(strlen((char *)item->value) != 11) {
-            fprintf(stderr, "ERROR : get_nist_minutiae_pixel_coords : "
+            DEBUG_PRINT("ERROR : get_nist_minutiae_pixel_coords : "
                     "location/direction value \"%s\" has wrong length in "
                     "MRC subfield index [%d.%d.%d] [Type-%u.%03d]\n",
                     (char *)item->value, minrecord_i+1, field_i+1, subfield_i+1,
@@ -504,7 +506,7 @@ int An2kLoader::get_nist_minutiae_pixel_coords(int **oxs, int **oys, int *onpts,
         item->value[4] = '\0';
         micro_mm = (int)strtol((char *)item->value, &nep, 10);
         if (nep == (char *)item->value || *nep != '\0') {
-            fprintf(stderr, "ERROR : get_nist_minutiae_pixel_coords : "
+            DEBUG_PRINT("ERROR : get_nist_minutiae_pixel_coords : "
                     "MRC subfield [%d.%d.%d] [Type-%u.%03d] : "
                     "x-coord is not a valid integer value '%s'\n.",
                     minrecord_i+1, field_i+1, subfield_i+1,
@@ -519,7 +521,7 @@ int An2kLoader::get_nist_minutiae_pixel_coords(int **oxs, int **oys, int *onpts,
 
         micro_mm = (int)strtol((char *)&(item->value[4]), &nep, 10);
         if (nep == (char *)item->value || *nep != '\0') {
-            fprintf(stderr, "ERROR : get_nist_minutiae_pixel_coords : "
+            DEBUG_PRINT("ERROR : get_nist_minutiae_pixel_coords : "
                     "MRC subfield [%d.%d.%d] [Type-%u.%03d] : "
                     "y-coord is not a valid integer value '%s'\n.",
                     minrecord_i+1, field_i+1, subfield_i+1,
@@ -564,9 +566,9 @@ int An2kLoader::get_iafis_minutiae_pixel_coords(int **oxs, int **oys, int *onpts
             return(ret);
         /* IF COF field not zero ... */
         if(!ret) {
-            fprintf(stderr, "WARNING : get_iafis_minutiae_pixel_coords : ");
-            fprintf(stderr, "COF field non-zero in record index ");
-            fprintf(stderr, "[%d] [Type-%d.%03d], so minutiae ignored\n",
+            DEBUG_PRINT("WARNING : get_iafis_minutiae_pixel_coords : ");
+            DEBUG_PRINT("COF field non-zero in record index ");
+            DEBUG_PRINT("[%d] [Type-%d.%03d], so minutiae ignored\n",
                     minrecord_i+1, minrecord->type, COF_ID);
             *onpts = 0;
             /* Return normally. */
@@ -576,10 +578,10 @@ int An2kLoader::get_iafis_minutiae_pixel_coords(int **oxs, int **oys, int *onpts
 
     /* Find minutiae count field ... */
     if(!lookup_ANSI_NIST_field(&field, &field_i, NMN_ID, minrecord)) {
-        fprintf(stderr, "ERROR : get_iafis_minutiae_pixel_coords : ");
-        fprintf(stderr, "NMN field in record index [%d] [Type-%d.%03d] ",
+        DEBUG_PRINT("ERROR : get_iafis_minutiae_pixel_coords : ");
+        DEBUG_PRINT("NMN field in record index [%d] [Type-%d.%03d] ",
                 minrecord_i+1, minrecord->type, NMN_ID);
-        fprintf(stderr, "not found\n");
+        DEBUG_PRINT("not found\n");
         return(-2);
     }
     npts = atoi((char *)field->subfields[0]->items[0]->value);
@@ -598,20 +600,20 @@ int An2kLoader::get_iafis_minutiae_pixel_coords(int **oxs, int **oys, int *onpts
     }
     /* Find minutiae attributes field ... */
     if(!lookup_ANSI_NIST_field(&field, &field_i, MAT_ID, minrecord)) {
-        fprintf(stderr, "ERROR : get_iafis_minutiae_pixel_coords : ");
-        fprintf(stderr, "MAT field in record index [%d] [Type-%d.%03d] ",
+        DEBUG_PRINT("ERROR : get_iafis_minutiae_pixel_coords : ");
+        DEBUG_PRINT("MAT field in record index [%d] [Type-%d.%03d] ",
                 minrecord_i+1, minrecord->type, MAT_ID);
-        fprintf(stderr, "not found\n");
+        DEBUG_PRINT("not found\n");
         free(xs);
         free(ys);
         return(-5);
     }
     /* If wrong number of subfields ... */
     if(field->num_subfields != npts) {
-        fprintf(stderr, "ERROR : get_iafis_minutiae_pixel_coords : ");
-        fprintf(stderr, "number of subfields %d != %d ",
+        DEBUG_PRINT("ERROR : get_iafis_minutiae_pixel_coords : ");
+        DEBUG_PRINT("number of subfields %d != %d ",
                 field->num_subfields, npts);
-        fprintf(stderr, "in MAT field index [%d.%d] [Type-%d.%03d]\n",
+        DEBUG_PRINT("in MAT field index [%d.%d] [Type-%d.%03d]\n",
                 minrecord_i+1, field_i+1, minrecord->type, MAT_ID);
         free(xs);
         free(ys);
@@ -624,10 +626,10 @@ int An2kLoader::get_iafis_minutiae_pixel_coords(int **oxs, int **oys, int *onpts
         item = field->subfields[subfield_i]->items[1];
         /* If location/direction wrong length ... */
         if(strlen((char *)item->value) != 11) {
-            fprintf(stderr, "ERROR : get_iafis_minutiae_pixel_coords : ");
-            fprintf(stderr, "location/direction value \"%s\" has ", item->value);
-            fprintf(stderr, "wrong length in MAT subfield ");
-            fprintf(stderr, "index [%d.%d.%d] [Type-%d.%03d]\n",
+            DEBUG_PRINT("ERROR : get_iafis_minutiae_pixel_coords : ");
+            DEBUG_PRINT("location/direction value \"%s\" has ", item->value);
+            DEBUG_PRINT("wrong length in MAT subfield ");
+            DEBUG_PRINT("index [%d.%d.%d] [Type-%d.%03d]\n",
                     minrecord_i+1, field_i+1, subfield_i+1,
                     minrecord->type, MAT_ID);
             free(xs);
@@ -664,7 +666,7 @@ int An2kLoader::is_COF_zero(FIELD *coffield)
 
     if((coffield->num_subfields != 1) ||
             (coffield->subfields[0]->num_items < 1)) {
-        fprintf(stderr, "ERROR : is_COF_zero : field format error\n");
+        DEBUG_PRINT("ERROR : is_COF_zero : field format error\n");
         return(-2);
     }
     else {
@@ -740,7 +742,7 @@ int An2kLoader::get_segmentation_data(const RECORD *const imgrecord,
     /* Allocate the space. */
     space_needed += sizeof(SEGMENTS);
     if (NULL == (seg = (SEGMENTS*)malloc(space_needed))) {
-        fprintf(stderr, "ERROR : get_segmentation_data : "
+        DEBUG_PRINT("ERROR : get_segmentation_data : "
                 "cannot allocate %d bytes for segmentation data\n",
                 space_needed);
         return -1;
@@ -764,7 +766,7 @@ int An2kLoader::get_segmentation_data(const RECORD *const imgrecord,
             next += pol->num_points;
 
             if (subf->num_items != 5) {
-                fprintf(stderr, "ERROR : get_segmentation_data : "
+                DEBUG_PRINT("ERROR : get_segmentation_data : "
                         "expected 5 items, found %d\n", subf->num_items);
                 return -2;
             }

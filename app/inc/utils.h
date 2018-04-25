@@ -12,7 +12,7 @@
 
 #define DEBUG_PRINT(...) fprintf(stderr, __VA_ARGS__);
 #else
-#define CHECK(x)
+#define CHECK(x) x
 
 #define DEBUG_PRINT(...)
 #endif
@@ -22,7 +22,5 @@
 #else
 #define DECORATION extern
 #endif
-
-/*DECORATION Restaurante _global;*/
 
 #endif // UTIL_H
