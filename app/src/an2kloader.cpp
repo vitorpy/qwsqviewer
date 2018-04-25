@@ -1,8 +1,9 @@
-#include <QString>
-#include "inc/an2kloader.h"
-//#include "dpyan2k.h"
-#include "defs.h"
 #include <sys/param.h>
+#include <QImage>
+#include <QString>
+#include "canvas.h"
+#include "inc/an2kloader.h"
+#include "defs.h"
 
 An2kLoader::An2kLoader(Canvas* canvas)
 {
@@ -802,4 +803,6 @@ int An2kLoader::get_segmentation_data(const RECORD *const imgrecord,
 int An2kLoader::dpyimagepts(char *fname, unsigned char *data, unsigned int image_w, unsigned int image_h, unsigned int d, unsigned int whitepix, int align, int *done, int *xs, int *ys, int npts, const SEGMENTS * const segs)
 {
     /* Open a new MainWindow, show the image, add the minutiae */
+    QImage img(data, image_w, image_h, QImage::Format_Grayscale8, &free, data);
+    _canvas->setImage(img);
 }
