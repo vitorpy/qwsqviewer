@@ -20,3 +20,6 @@
 *.out
 *.app
 *.user
+
+*/.DS_Store
+.DS_Store
