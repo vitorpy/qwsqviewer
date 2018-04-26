@@ -4,7 +4,7 @@ TARGET = qwsqviewer
 TEMPLATE = app
 DEPENDPATH += src inc
 INCLUDEPATH += inc ../imgtools/include ../commonnbis/include ../an2k/include /usr/local/Cellar/jpeg/9b/include/ ../mindtct/include
-LIBS +=  ../an2k/liban2k.a ../imgtools/libimgtools.a ../commonnbis/libcommonnbis.a ../mindtct/libmindtct.a
+LIBS += ../an2k/liban2k.a ../imgtools/libimgtools.a ../commonnbis/libcommonnbis.a ../mindtct/libmindtct.a /usr/local/Cellar/jpeg/9b/lib/libjpeg.a
 
 SOURCES += \
     src/mainwindow.cpp \

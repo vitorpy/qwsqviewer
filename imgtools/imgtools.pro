@@ -38,7 +38,8 @@ HEADERS += \
     include/binops.h \
     include/sunrast.h \
     include/grp4deco.h \
-    include/dilate.h
+    include/dilate.h \
+    src/jpegb/jinclude.h
 
 SOURCES += \
     src/jpegl/encoder.c \
@@ -92,5 +93,8 @@ SOURCES += \
     src/ihead/ihead_readihdr.c \
     src/ihead/ihead_writihdr.c \
     src/image/image_writihdr.c \
-    src/image/image_readihdr.c
+    src/image/image_readihdr.c \
+    src/jpegb/decoder.c \
+    src/jpegb/ppi.c \
+    src/jpegb/membuf.c
 

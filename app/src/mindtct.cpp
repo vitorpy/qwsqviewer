@@ -77,7 +77,8 @@ of the software.
 
 void procargs(int, char **, int *, int *, char **, char **);
 
-int debug = 0;
+/*int debug = 0;*/
+extern int debug;
 
 MinutiaeDetect::MinutiaeDetect(Canvas* canvas)
 {
