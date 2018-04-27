@@ -23,6 +23,9 @@ public:
 
     void addMinutiae(Minutiae m);
 
+    double ppi() const { return _ppi; }
+    void setPpi(double ppi) { _ppi = ppi; }
+
 signals:
 
 public slots:
@@ -32,7 +35,8 @@ protected:
 
 private:
     QImage _image;
-    double _scale;
+    double _factor; //!< \brief Zoom factor
+    double _ppi; //!< \brief Pixels per inch (assumes it's the same for x and y)
     QMutex _mutex;
     QList<Minutiae> _minutiae;
 };
