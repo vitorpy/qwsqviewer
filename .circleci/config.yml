@@ -4,14 +4,8 @@ jobs:
     docker:
       - image: ubuntu:xenial
     steps:
-      - run:
-	  name: Update, install repos and update again
-          command: sudo apt-get install apt -y; sudo add-apt-repository ppa:beineri/opt-qt-5.10.0-xenial; sudo apt-get update -y; true
-      - run:
-          name: Install Qt5
-          command: sudo apt-get install qt510-meta-full -y; /opt/qt510/bin/qt510-env.sh 
+      - run: sudo apt-get install apt -y; sudo add-apt-repository ppa:beineri/opt-qt-5.10.0-xenial; sudo apt-get update -y; true
+      - run: sudo apt-get install qt510-meta-full -y; /opt/qt510/bin/qt510-env.sh 
       - checkout
-      - run:
-          name: Compile
-          command: qmake; make
-
+      - run: qmake; make
+          
