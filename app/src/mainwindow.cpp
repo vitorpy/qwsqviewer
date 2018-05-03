@@ -16,6 +16,7 @@
 #include "wsq.h"
 #include "img_io.h"
 #include "an2kloader.h"
+#include "mindtct.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -40,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
     CHECK(connect(_ui->actionZoomOriginal, SIGNAL(triggered(bool)), this, SLOT(zoomOriginal())));
     CHECK(connect(_ui->actionZoomFit, SIGNAL(triggered(bool)), this, SLOT(zoomFit())));
     CHECK(connect(_ui->actionOpenAN2K, SIGNAL(triggered(bool)), this, SLOT(openAn2k())));
+    CHECK(connect(_ui->actionDetectMinutiae, SIGNAL(triggered(bool)), this, SLOT(detectMinutiae())));
 }
 
 MainWindow::~MainWindow()
@@ -88,6 +90,7 @@ void MainWindow::open()
     QImage img(odata, width, height, QImage::Format_Grayscale8, &free, odata);
     _canvas->setImage(img);
     _canvas->update();
+    _canvas->setPpi(ppi);
 
     free(idata);
 }
@@ -123,4 +126,12 @@ void MainWindow::openAn2k()
 
     QThreadPool *threadPool = QThreadPool::globalInstance();
     threadPool->start(_loader);
+}
+
+void MainWindow::detectMinutiae()
+{
+    MinutiaeDetect* md = new MinutiaeDetect(_canvas);
+
+    QThreadPool *threadPool = QThreadPool::globalInstance();
+    threadPool->start(md);
 }

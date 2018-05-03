@@ -28,6 +28,7 @@ private slots:
     void zoomOriginal();
     void zoomFit();
     void openAn2k();
+    void detectMinutiae();
 
 private:
     Ui::MainWindow *_ui;

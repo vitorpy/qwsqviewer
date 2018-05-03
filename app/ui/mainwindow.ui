@@ -71,11 +71,11 @@
    <addaction name="actionZoomFit"/>
    <addaction name="actionZoomOriginal"/>
    <addaction name="separator"/>
-   <addaction name="actionDetect_Minutiae"/>
+   <addaction name="actionDetectMinutiae"/>
    <addaction name="separator"/>
    <addaction name="actionAddRidgeEnd"/>
    <addaction name="actionAdd_Bifurcation"/>
-   <addaction name="actionRemove_Minutiae"/>
+   <addaction name="actionRemoveMinutiae"/>
    <addaction name="separator"/>
    <addaction name="actionExit"/>
   </widget>
@@ -150,7 +150,7 @@
     <string>Open AN2K...</string>
    </property>
   </action>
-  <action name="actionDetect_Minutiae">
+  <action name="actionDetectMinutiae">
    <property name="text">
     <string>Detect Minutiae</string>
    </property>
@@ -168,7 +168,7 @@
     <string>Add Bifurcation</string>
    </property>
   </action>
-  <action name="actionRemove_Minutiae">
+  <action name="actionRemoveMinutiae">
    <property name="text">
     <string>Remove Minutiae</string>
    </property>

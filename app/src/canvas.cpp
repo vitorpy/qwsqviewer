@@ -2,10 +2,12 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QScrollArea>
+#include "lfs.h"
 
 Canvas::Canvas(QWidget *parent) : QWidget(parent)
 {
     _factor = 1.0;
+    _ppi = DEFAULT_PPI;
 }
 
 void Canvas::setImage(const QImage &image) {

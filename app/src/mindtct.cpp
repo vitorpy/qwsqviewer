@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <sys/param.h>
+
+#include <QImage>
+
 #include <an2k.h>
 #include <lfs.h>
 #include <imgdecod.h>
@@ -8,6 +11,7 @@
 #include <version.h>
 
 #include "mindtct.h"
+#include "canvas.h"
 
 //void procargs(int, char **, int *, int *, char **, char **);
 
@@ -24,21 +28,23 @@ MinutiaeDetect::MinutiaeDetect(Canvas* canvas)
 
 void MinutiaeDetect::run()
 {
-    int boostflag, m1flag;
-    char *ifile, *oroot, ofile[MAXPATHLEN];
+    /*int boostflag, m1flag;
+    char *ifile, *oroot, ofile[MAXPATHLEN];*/
     unsigned char *idata, *bdata;
-    int img_type;
-    int ilen, iw, ih, id, ippi, bw, bh, bd;
+    /*int img_type;*/
+    int /*ilen,*/ iw, ih, id, ippi, bw, bh, bd;
     double ippmm;
-    int img_idc, img_imp;
+    /*int img_idc, img_imp;*/
     int *direction_map, *low_contrast_map, *low_flow_map;
     int *high_curve_map, *quality_map;
     int map_w, map_h;
     int ret;
     MINUTIAE *minutiae;
-    ANSI_NIST *ansi_nist;
-    RECORD *imgrecord;
-    int imgrecord_i;
+    /*ANSI_NIST *ansi_nist;
+    RECORD *imgrecord;*/
+    /*int imgrecord_i;*/
+
+#if 0
 
     /* 1. READ FINGERPRINT IMAGE FROM FILE INTO MEMORY. */
 
@@ -87,18 +93,36 @@ void MinutiaeDetect::run()
     /* 2. ENHANCE IMAGE CONTRAST IF REQUESTED */
     if(boostflag)
        trim_histtails_contrast_boost(idata, iw, ih);
+#endif
+
+    QImage image = _canvas->image();
+    ippi = _canvas->ppi();
+    ippmm = ippi / (double)MM_PER_INCH;
+    idata = const_cast<uchar *>(image.constBits());
+    iw = image.width();
+    ih = image.height();
+    id = 8;
 
     /* 3. GET MINUTIAE & BINARIZED IMAGE. */
     if((ret = get_minutiae(&minutiae, &quality_map, &direction_map,
                           &low_contrast_map, &low_flow_map, &high_curve_map,
                           &map_w, &map_h, &bdata, &bw, &bh, &bd,
                           idata, iw, ih, id, ippmm, &lfsparms_V2))){
+#if 0
        if(img_type == ANSI_NIST_IMG)
           free_ANSI_NIST(ansi_nist);
        free(idata);
-       exit(ret);
+#endif
+       return;
     }
 
+    for (int i = 0; i < minutiae->num; ++i)
+    {
+        auto m = minutiae->list[i];
+        _canvas->addMinutiae(Minutiae(m->x, m->y));
+    }
+
+#if 0
     /* Done with input image data */
     free(idata);
 
@@ -171,4 +195,6 @@ void MinutiaeDetect::run()
 
     /* Exit normally. */
     /* exit(0); */
+
+#endif
 }
