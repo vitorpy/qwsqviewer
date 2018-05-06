@@ -3,6 +3,8 @@ qwsqviewer
 
 Qt-based WSQ image viewer.
 
+Build status: ![Build status](https://circleci.com/gh/vitorpy/qwsqviewer.png?circle-token=0e278eb666d855399f6d8b8f0735fff2802d89c5)
+
 Author
 ------
 
@@ -11,11 +13,11 @@ Vitor Py (vitorpy@gmail.com)
 TODO
 ----
 
-* Get it to work! ;-)
+* Fix build env and settings for CircleCI
 
-* Include options to also show minutiae from a NIST template
+* Finish UI for editing minutiae
 
-* Further options to manually edit a NIST template
+* Save minutiae file
 
 Attributions and copyrights
 ---------------------------
